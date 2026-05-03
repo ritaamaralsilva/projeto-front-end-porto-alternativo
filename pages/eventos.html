@@ -71,13 +71,13 @@
             <button class="btn btn-outline-warning filter-btn" data-filter="Eletrónica">Eletrónica</button>
         </div>
 
-        <!-- LISTA DE EVENTOS -->
+<!-- LISTA DE EVENTOS || deixei o contentor vazio de propósito no HTML. O conteúdo é injetado pelo ficheiro eventos.js, os dados estão num array e o script cria os cards automaticamente-->
         <div id="lista-eventos" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             <!-- Cards injetados via JS -->
         </div>
     </main>
 
-    <!-- MODAL DE DETALHES DO EVENTO -->
+    <!-- MODAL DE DETALHES DO EVENTO || cada card de evento tem um botão "Ver Mais". No JS, quando esse botao é clicado, pego no ID desse evento e preencho os campos do modal-->
     <div class="modal fade" id="eventoModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content bg-dark text-light border-secondary">
@@ -101,6 +101,8 @@
                         </div>
                         <div class="col-md-6">
                             <h6>Localização:</h6>
+
+<!--a classe do Bootstrap ratio ratio-4x3 serve para manter a proporção do mapa-->
                             <div class="ratio ratio-4x3">
                                 <iframe id="modalMapa" src="" style="border:0;" allowfullscreen=""
                                     loading="lazy"></iframe>

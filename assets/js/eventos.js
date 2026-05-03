@@ -1,8 +1,9 @@
-// Lógica da Agenda de Eventos - Porto Alternativo
+// Lógica da Agenda de Eventos - Porto Alternativo || o JS trata da lógica e o HTML serve apenas de esqueleto
+// serve para garantir que o JavaScript só começa a correr depois de todo o HTML da pagina estar carregado
 document.addEventListener("DOMContentLoaded", () => {
     let todosEventos = [];
 
-    // Carregar os dados do ficheiro JSON
+    // Carregar os dados do ficheiro JSON || O fetch() serve para ir buscar dados a um ficheiro externo, neste caso o eventos.json, para não ter de escrever o HTML de cada concerto à mão
     fetch('../assets/base-dados/eventos.json')
         .then(res => {
             if (!res.ok) throw new Error("Erro ao carregar o ficheiro de eventos.");
@@ -44,7 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Lógica dos Filtros de Categoria
+    // Lógica dos Filtros de Categoria || o filter cria uma nova lista apenas com os eventos que correspondem à categoria clicada
+    // o some serve para verificar se pelo menos uma dessas categorias coincide com o filtro selecionado
     const botoesFiltro = document.querySelectorAll('.filter-btn');
     botoesFiltro.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -57,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? todosEventos 
                 : todosEventos.filter(ev => 
                     Array.isArray(ev.categoria) 
-                        ? ev.categoria.some(c => c.toLowerCase().includes(filtro.toLowerCase())) 
+                        ? ev.categoria.some(c => c.toLowerCase().includes(filtro.toLowerCase())) // toLowerCase p nao falhar se houver letras maiusculas ou minusculas diferentes
                         : ev.categoria.toLowerCase().includes(filtro.toLowerCase())
                 );
             
@@ -65,7 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Função para o Modal de Detalhes com Validação de Bilheteira
+    // Função para o Modal de Detalhes com Validação de Bilheteira 
+    //usei window porque assim garanto que o atributo onclick="verEventoDetalhes(...)" que injetei nos cards consiga encontrar a funçao
     window.verEventoDetalhes = (id) => {
         const evento = todosEventos.find(e => e.id === id);
         if (!evento) return;
@@ -105,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 btnBilheteira.classList.add('disabled', 'btn-secondary');
                 btnBilheteira.classList.remove('btn-warning');
                 btnBilheteira.style.pointerEvents = 'none';
-            }
+            } // se o evento tiver um link, o botao funciona normalmente. Se o bilhete for vendido à porta, o script altera o texto do botao para informar o utilizador e desativa o clique (pointerEvents = 'none') para evitar erros, e muda a cor para cinzento (btn-secondary)
         }
 
         // Abrir o Modal
