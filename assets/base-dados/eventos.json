@@ -37,5 +37,57 @@
     "bilheteira": "No local",
     "site": "https://sonoscopia.pt/",
     "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3003.408252383939!2d-8.61993028854262!3d41.16926197120872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465aff416c3cb%3A0x113f909c4094fc4b!2sSonoscopia%20Associa%C3%A7%C3%A3o%20Cultural!5e0!3m2!1spt-PT!2spt!4v1777814222838!5m2!1spt-PT!2spt"
+  },
+  {
+    "id": 4,
+    "nome": "Hayes: Nørbak + Cravo",
+    "data": "2026-05-02",
+    "hora": "23:55",
+    "local": "Gare Club",
+    "categoria": ["Techno", "Hypnotic"],
+    "imagem": "../assets/images/eventos/hayes-gare.webp",
+    "descricao": "A editora Hayes assume o túnel com o techno de precisão de Nørbak e Cravo.",
+    "bilheteira": "https://shotgun.live/pt-pt/venues/gare-porto",
+    "site": "https://www.instagram.com/gareporto/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.4720205949598!2d-8.614465750428996!3d41.14605049763782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24650714201cbd%3A0xced62f482ab8407e!2sGare%20Porto!5e0!3m2!1spt-PT!2spt!4v1777817295958!5m2!1spt-PT!2spt"
+  },
+  {
+    "id": 5,
+    "nome": "Parpar",
+    "data": "2026-05-07",
+    "hora": "21:30",
+    "local": "Maus Hábitos",
+    "categoria": ["Experimental", "Live Act"],
+    "imagem": "../assets/images/eventos/parpar-maushabitos.jpg",
+    "descricao": "Explorações sonoras e texturas contemporâneas num concerto intimista.",
+    "bilheteira": "https://loja.maushabitos.com/",
+    "site": "https://www.maushabitos.com/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.4421248487693!2d-8.608318288543803!3d41.14670297121188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464e584ca423d%3A0xc127aff6c19a3781!2sMaus%20H%C3%A1bitos!5e0!3m2!1spt-PT!2spt!4v1777816041441!5m2!1spt-PT!2spt"
+  },
+  {
+    "id": 6,
+    "nome": "Calcutá",
+    "data": "2026-05-15",
+    "hora": "21:30",
+    "local": "Passos Manuel",
+    "categoria": ["Dream-pop", "Indie"],
+    "imagem": "../assets/images/eventos/calcuta-passos.jpg",
+    "descricao": "Teresa Castro apresenta o novo trabalho num ambiente etéreo e cinematográfico.",
+    "bilheteira": "https://www.bol.pt/",
+    "site": "https://www.instagram.com/passosmanuel_/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.4368556128925!2d-8.608072288543797!3d41.14681797121191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465f47d116b9f%3A0x5189d7aa4a66c851!2sPassos%20no%20Escuro!5e0!3m2!1spt-PT!2spt!4v1777816219455!5m2!1spt-PT!2spt"
+  },
+  {
+    "id": 7,
+    "nome": "THISPAGE + QUERMESSE",
+    "data": "2026-05-22",
+    "hora": "22:00",
+    "local": "RCA - Radioclube Agramonte",
+    "categoria": ["Post-Rock", "Alternativo"],
+    "imagem": "../assets/images/eventos/thispage-rca.webp",
+    "descricao": "Concerto duplo focado em texturas instrumentais e rock exploratório.",
+    "bilheteira": "Porta",
+    "site": "https://www.espacoagra.pt/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.061352451719!2d-8.638174288543363!3d41.155012571210754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465002b58264d%3A0x826040ae31aa2805!2sRCA%20-%20Radioclube%20Agramonte!5e0!3m2!1spt-PT!2spt!4v1777817063136!5m2!1spt-PT!2spt"
   }
 ]
