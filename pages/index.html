@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -22,20 +22,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <!-- MEU CSS -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/style/style.css">
 
     <title>Porto Alternativo</title>
 </head>
 
-<body class="bg-dark text-light d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100">
 
-    <header class="text-center sticky-top bg-dark border-bottom border-secondary">
+    <header class="text-center sticky-top border-bottom border-secondary">
 
-        <a href="../pages/index.html">
-            <h2 class="pt-3 text-warning fw-bold">PORTO <span class="text-white">ALTERNATIVO</span></h2>
+        <a href="../pages/index.html" class="text-decoration-none">
+            <h2 class="pt-3 fw-bold">PORTO ALTERNATIVO</h2>
         </a>
 
-        <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -43,7 +43,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <div class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="../pages/index.html">Início</a>
                         </li>
@@ -62,20 +62,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="../pages/contacto.html">Contacto</a>
                         </li>
-                    </ul>
-                    <!-- Barra de pesquisa mantida do estilo Worten -->
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2 bg-secondary border-0 text-white" type="search"
-                            placeholder="Procurar concertos..." aria-label="Search" />
-                        <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
-                    </form>
+
+                        <!-- NOVO: Botão Switch de Tema -->
+                        <li class="nav-item ms-lg-auto">
+                            <button id="theme-toggle" class="btn btn-link nav-link">
+                                <i id="theme-icon" class="bi bi-moon-stars"></i>
+                            </button>
+                        </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
         </nav>
     </header>
 
-    <main class="container shadow p-3 mb-5 rounded flex-grow-1 bg-dark">
-        <h1 class="text-center mb-4 text-warning">Destaques da Semana</h1>
+    <main class="container shadow p-3 mb-5 rounded flex-grow-1">
+        <h1 class="text-center mb-4">Destaques da Semana</h1>
 
         <!-- Carrossel de Eventos (Adaptado da Worten) -->
         <div id="carouselExampleCaptions" class="carousel slide mx-auto shadow-lg" data-bs-ride="carousel"
@@ -90,25 +91,31 @@
             </div>
             <div class="carousel-inner rounded">
                 <div class="carousel-item active">
-                    <!-- Substitui as imagens da Worten por fotos de concertos no Porto -->
-                    <img src="../assets/images/destaques-semana-planob.avif" class="d-block w-100"
-                        alt="Travo (Concerto) Plano B ">
-                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded">
+                    <div class="carousel-img-container">
+                        <img src="../assets/images/destaques-semana-planob.avif" class="d-block w-100"
+                            alt="Travo (Concerto) Plano B ">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block bg-opacity-75 rounded">
                         <h5>TRAVO (Concerto)</h5>
                         <p>Plano B - 30/04/2026 | 22:30</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="../assets/images/destaques-semana-casadamusica.webp" class="d-block w-100"
-                        alt="Sonoscopia">
-                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded">
+                    <div class="carousel-img-container">
+                        <img src="../assets/images/destaques-semana-casadamusica.webp" class="d-block w-100"
+                            alt="Rival Consoles Casa da Música">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block bg-opacity-75 rounded">
                         <h5>Rival Consoles (Concerto) </h5>
                         <p>Casa da Música - 01/05/2026 | 21:00</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="../assets/images/destaques-semana-sonoscopia.png" class="d-block w-100" alt="Gare Club">
-                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded">
+                    <div class="carousel-img-container">
+                        <img src="../assets/images/destaques-semana-sonoscopia.png" class="d-block w-100"
+                            alt="Microvolumes Sonoscopia">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block bg-opacity-75 rounded">
                         <h5>Microvolumes 4.82 | Abattoir & Borghi | Nicoleta Chatzopoulou</h5>
                         <p>Sonoscopia - 02/05/2026 | 18:30</p>
                     </div>
@@ -135,12 +142,12 @@
     </main>
 
     <!-- Footer estilo Worten adaptado -->
-    <footer class="container-fluid text-light text-center p-4 bg-black border-top border-secondary">
+    <footer class="container-fluid text-center p-4 border-top border-secondary">
         <div class="row align-items-center">
-            <div class="col-md-6 text-md-start">
+            <div class="col-md-6">
                 <p class="mb-0">© 2026 PORTO ALTERNATIVO - A Agenda Cultural da Música Underground </p>
             </div>
-            <div class="col-md-6 text-md-end mt-3 mt-md-0">
+            <div class="col-md-6 mt-3 mt-md-0">
                 <a href="#" class="text-warning"><i class="bi bi-facebook mx-2 fs-4"></i></a>
                 <a href="#" class="text-warning"><i class="bi bi-instagram mx-2 fs-4"></i></a>
                 <a href="#" class="text-warning"><i class="bi bi-spotify mx-2 fs-4"></i></a>

@@ -1,0 +1,184 @@
+/* --- RESET E TEMA BASE --- */
+:root {
+    /* DARK MODE (Default) */
+    --bg-body: #000000;
+    --bg-card: #111111;
+    --text-main: #ffffff;
+    --text-muted: #999999;
+    --accent: #ffffff;
+    --border-color: #333333;
+}
+
+[data-theme="light"] {
+    /* LIGHT MODE */
+    --bg-body: #ffffff;
+    --bg-card: #f8f9fa;
+    --text-main: #000000;
+    --text-muted: #666666;
+    --accent: #000000;
+    --border-color: #dee2e6;
+}
+
+/* --- APLICAÇÃO OBRIGATÓRIA --- */
+body {
+    background-color: var(--bg-body) !important;
+    color: var(--text-main) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* O teu main e header também precisam de herdar estas cores */
+main,
+header,
+footer,
+.navbar {
+    background-color: var(--bg-body) !important;
+    color: var(--text-main) !important;
+}
+
+/* Garante que os títulos são visíveis */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a {
+    color: var(--text-main) !important;
+}
+
+/* Corrigir a borda que separa o header e footer */
+header,
+footer {
+    border-color: var(--border-color) !important;
+}
+
+
+.navbar .container-fluid {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* Centraliza o conteúdo principal (a lista) */
+    align-items: center;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    /* Espaçamento fixo entre links do centro */
+    margin: 0 auto;
+    /* Força a centralização total */
+}
+
+/* Posiciona o "Início" fixo à esquerda */
+.navbar-nav .nav-item:first-child {
+    position: absolute;
+    left: 15px;
+    margin-right: 0;
+}
+
+/* Posiciona o "Switch" dos temas fixo à direita */
+.navbar-nav .nav-item:last-child {
+    position: absolute;
+    right: 15px;
+    margin-left: 0;
+}
+
+/* Ajuste de cor e estilo para manter a consistência underground */
+.nav-link {
+    color: #ffffff !important;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #ffc107 !important;
+    /* Amarelo Porto Alternativo */
+}
+
+/* Centralizar Footer */
+footer .row {
+    justify-content: center;
+    text-align: center;
+}
+
+footer .col-md-6 {
+    width: 100%;
+    /* Força as colunas a ocuparem a largura total para centralizar */
+    text-align: center !important;
+    margin-bottom: 10px;
+}
+
+
+/* Botões Monocromáticos */
+.btn-warning {
+    background-color: var(--accent) !important;
+    color: var(--bg-body) !important;
+    /* Inverte a cor para leitura */
+    border: 1px solid var(--accent) !important;
+    border-radius: 0;
+    /* Opcional: cantos retos dão um look mais indie */
+}
+
+.btn-outline-warning {
+    color: var(--text-main) !important;
+    border-color: var(--text-main) !important;
+}
+
+.btn-outline-warning:hover {
+    background-color: var(--text-main) !important;
+    color: var(--bg-body) !important;
+}
+
+/* Ajuste nos ícones e links */
+a,
+.bi {
+    color: var(--text-main);
+    transition: opacity 0.3s ease;
+}
+
+a:hover {
+    opacity: 0.7;
+    color: var(--text-main) !important;
+}
+
+/* Badge e indicadores do Carrossel */
+.carousel-indicators [data-bs-target] {
+    background-color: var(--text-main) !important;
+}
+
+/* Altura fixa para o carrossel em desktop */
+.carousel-img-container {
+    height: 450px;
+    overflow: hidden;
+}
+
+.carousel-img-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    /* Corta a imagem sem a distorcer para preencher o espaço */
+}
+
+/* Ajuste para telemóveis (altura menor) */
+@media (max-width: 768px) {
+    .carousel-img-container {
+        height: 250px;
+    }
+}
+
+/* imagens a cinza, que só mostram cor com o hover */
+img {
+    filter: grayscale(100%);
+    transition: filter 0.5s ease;
+}
+
+img:hover {
+    filter: grayscale(0%);
+}
+
