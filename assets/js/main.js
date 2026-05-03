@@ -1,15 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => {
     let todosLocais = [];
 
-    // 1. Carregar Dados
-    fetch('../assets/data/locais.json')
+    // --- LÓGICA DE DARK/LIGHT MODE ---
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeIcon = document.getElementById("theme-icon");
+    const htmlElement = document.documentElement;
+
+    // Carregar preferência ou default para dark
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    htmlElement.setAttribute("data-theme", savedTheme);
+    updateIcon(savedTheme);
+
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            const currentTheme = htmlElement.getAttribute("data-theme");
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            
+            htmlElement.setAttribute("data-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+            updateIcon(newTheme);
+        });
+    }
+
+    function updateIcon(theme) {
+        if (!themeIcon) return;
+        if (theme === "light") {
+            themeIcon.classList.replace("bi-moon-stars", "bi-sun-fill");
+        } else {
+            themeIcon.classList.replace("bi-sun-fill", "bi-moon-stars");
+        }
+    }
+
+    // Carregar Dados
+    fetch('../assets/base-dados/locais.json')
         .then(res => res.json())
         .then(data => {
             todosLocais = data;
             renderizarLocais(todosLocais);
         });
 
-    // 2. Função para criar os Cards
+    // Função para criar os Cards
     function renderizarLocais(lista) {
         const container = document.getElementById('lista-locais');
         container.innerHTML = ""; // Limpa o contentor
@@ -22,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             container.innerHTML += `
                 <div class="col">
-                    <div class="card h-100 bg-secondary border-0 shadow text-white">
+                    <div class="card h-100 border-0 shadow-sm border">
                         <img src="${local.imagem}" class="card-img-top" alt="${local.nome}" style="height: 200px; object-fit: cover;">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title text-warning">${local.nome}</h5>
@@ -35,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 3. Sistema de Filtros
+    // Sistema de Filtros
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             // Estética dos botões
@@ -56,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 4. Função Global para o Modal (precisa ser global para o onclick funcionar)
+    // Função Global para o Modal (precisa ser global para o onclick funcionar)
     window.verDetalhes = (id) => {
         const local = todosLocais.find(l => l.id === id);
         if (!local) return;
