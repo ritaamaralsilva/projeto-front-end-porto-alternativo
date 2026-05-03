@@ -27,8 +27,6 @@
 ## Autoras
 *   **Rita Silva**
 *   **Sofia Brito**
-*   **PRO MOV 2026 - Software Developer**
-*   **Projeto desenvolvido para a UC Web Front End**
 
 
 ## Estrutura do Projeto
@@ -47,4 +45,7 @@ Porto-Alternativo/
 │   ├── sobre.html     # Sobre nós (Porto Alternativo)
 │   └── contacto.html  # Formulário de contacto
 └── README.md          # Documentação do projeto
+
+PRO MOV 2026 - Software Developer
+Projeto desenvolvido para a UC Web Front End
 
