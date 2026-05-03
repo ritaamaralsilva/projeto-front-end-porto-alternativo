@@ -1,0 +1,187 @@
+[
+    {
+    "id": 1001,
+    "nome": "Sonoscopia",
+    "categoria": "Associações Culturais",
+    "morada": "Rua de Silva Porto 217, 4250-469 Porto, Portugal",
+    "imagem": "../assets/images/locais/associacoes-culturais/sonoscopia.jpg",
+    "descricao": "Associação focada na criação, investigação e promoção de música experimental e arte sonora.",
+    "site": "https://sonoscopia.pt/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3003.408252383939!2d-8.61993028854262!3d41.16926197120872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465aff416c3cb%3A0x113f909c4094fc4b!2sSonoscopia%20Associa%C3%A7%C3%A3o%20Cultural!5e0!3m2!1spt-PT!2spt!4v1777814222838!5m2!1spt-PT!2spt"
+    },
+
+    {
+    "id": 1002,
+    "nome": "Lovers & Lollypops",
+    "categoria": "Associações Culturais",
+    "morada": "Rua de S. Victor 143A, 4000-515 Porto, Portugal",
+    "imagem": "../assets/img/locais/associacoes-culturais/lovers-lollypops.jpg",
+    "site": "https://www.loversandlollypops.net/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.5818822648266!2d-8.603896150429815!3d41.14365269763899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24650000db5c17%3A0xb88eb0f96cbb45e1!2sLovers%20%26%20Lollypops!5e0!3m2!1spt-PT!2spt!4v1777814861580!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1003,
+    "nome": "Apuro",
+    "categoria": "Associações Culturais",
+    "morada": "Rua dos Mártires da Liberdade 308 3º, 4050-359 Porto, Portugal",
+    "imagem": "../assets/img/locais/associacoes-culturais/apuro.jpg",
+    "site": "https://www.apuro.pt/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.141126696802!2d-8.615996888543458!3d41.153271771210896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465633aa97609%3A0x8b3c9fd30046e26c!2sApuro%20-%20Associa%C3%A7%C3%A3o%20Cultural%20e%20Filantr%C3%B3pica!5e0!3m2!1spt-PT!2spt!4v1777815001626!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1101,
+    "nome": "Super Bock Arena Porto",
+    "categoria": "Salas de Concertos",
+    "morada": "Jardins do Palácio de Cristal, R. de D Manuel II Porta 03, 4050-346 Porto, Portugal",
+    "imagem": "../assets/img/locais/salas-concertos/super-bock-arena.jpg",
+    "site": "https://www.superbockarena.pt/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.4337582129433!2d-8.62847868854379!3d41.146885571211804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24650536d7d431%3A0x41a4773f6d2fd2ff!2sSuper%20Bock%20Arena%20-%20Pavilh%C3%A3o%20Rosa%20Mota!5e0!3m2!1spt-PT!2spt!4v1777815389940!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1102,
+    "nome": "Casa da Música",
+    "categoria": "Salas de Concertos",
+    "morada": "Avenida da Boavista 604, 4149-071 Porto, Portugal",
+    "imagem": "../assets/img/locais/salas-concertos/casa-da-musica.jpg",
+    "site": "https://www.casadamusica.com/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24031.085113020887!2d-8.668845825683606!3d41.158846699999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd246500dce643cf%3A0xc35ebaec444540ed!2sCasa%20da%20M%C3%BAsica!5e0!3m2!1spt-PT!2spt!4v1777815618418!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1103,
+    "nome": "Coliseu do Porto AGEAS",
+    "categoria": "Salas de Concertos",
+    "morada": "Rua de Passos Manuel 137, 4000-385 Porto, Portugal",
+    "imagem": "../assets/img/locais/salas-concertos/coliseu-porto-ageas.jpg",
+    "site": "https://www.coliseu.pt/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.4368556128925!2d-8.608072288543772!3d41.14681797121191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464e5a091b163%3A0x7275e449d383333f!2sColiseu%20Porto%20Ageas!5e0!3m2!1spt-PT!2spt!4v1777815793979!5m2!1spt-PT!2spt"
+  },
+  
+  {
+    "id": 1104,
+    "nome": "Hotelier",
+    "categoria": "Salas de Concertos",
+    "morada": "Rua de Anselmo Braamcamp 324, 4000-079 Porto, Portugal",
+    "imagem": "../assets/img/locais/salas-concertos/hotelier.jpg",
+    "site": "https://www.hotelier.com.pt/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.108718744185!2d-8.603142588543458!3d41.15397897121093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24656265c50d9b%3A0xbf71070d5887dfdc!2sHotelier%20-%20O!5e0!3m2!1spt-PT!2spt!4v1777815930722!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1105,
+    "nome": "Maus Hábitos",
+    "categoria": ["Salas de Concertos", "Clubbing"],
+    "morada": "Rua de Passos Manuel 178, 4º Piso, 4000-382 Porto, Portugal",
+    "imagem": "../assets/img/locais/salas-concertos/maus-habitos.jpg",
+    "site": "https://www.maushabitos.com/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.4421248487693!2d-8.608318288543803!3d41.14670297121188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464e584ca423d%3A0xc127aff6c19a3781!2sMaus%20H%C3%A1bitos!5e0!3m2!1spt-PT!2spt!4v1777816041441!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1106,
+    "nome": "Passos Manuel",
+    "categoria": ["Salas de Concertos", "Clubbing"],
+    "morada": "Rua de Passos Manuel 137, 4000-382 Porto, Portugal",
+    "imagem": "../assets/img/locais/salas-concertos/passos-manuel.jpg",
+    "site": "https://www.instagram.com/passosmanuel_/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.4368556128925!2d-8.608072288543797!3d41.14681797121191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465f47d116b9f%3A0x5189d7aa4a66c851!2sPassos%20no%20Escuro!5e0!3m2!1spt-PT!2spt!4v1777816219455!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1107,
+    "nome": "Hard Club",
+    "categoria": ["Salas de Concertos", "Clubbing"],
+    "morada": "Praça do Infante D. Henrique, 4050-252 Porto",
+    "imagem": "../assets/img/locais/salas-concertos/hard-club.jpg",
+    "site": "https://www.hardclubporto.com/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.66153303742!2d-8.61975175043046!3d41.14191419763977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd246518c50af2e1%3A0xe6b342cc547ffc85!2sHard%20Club!5e0!3m2!1spt-PT!2spt!4v1777816645244!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1108,
+    "nome": "Understage - Teatro Municipal do Porto",
+    "categoria": "Salas de Concertos",
+    "morada": "Praça de João I, 4000-295 Porto (Teatro Rivoli)",
+    "imagem": "../assets/img/locais/salas-concertos/understage.jpg",
+    "site": "https://www.teatromunicipaldoporto.pt/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.393276277251!2d-8.612133288543696!3d41.14776907121169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464e493fff3ef%3A0x9cb4d1647fffce0d!2sTeatro%20Municipal%20do%20Porto%20-%20Rivoli!5e0!3m2!1spt-PT!2spt!4v1777816847446!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1109,
+    "nome": "RCA - Radioclube Agramonte",
+    "categoria": ["Salas de Concertos", "Clubbing"],
+    "morada": "R. João Martins Branco 180, 4150-431 Porto, Portugal",
+    "imagem": "../assets/img/locais/salas-concertos/rca.jpg",
+    "site": "https://www.espacoagra.pt/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.061352451719!2d-8.638174288543363!3d41.155012571210754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465002b58264d%3A0x826040ae31aa2805!2sRCA%20-%20Radioclube%20Agramonte!5e0!3m2!1spt-PT!2spt!4v1777817063136!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1201,
+    "nome": "Plano B",
+    "categoria": ["Clubbing", "Salas de Concertos"],
+    "morada": "Rua de Cândido dos Reis 30, 4050-151 Porto, Portugal",
+    "imagem": "../assets/img/locais/clubbing/plano-b.jpg",
+    "site": "https://planobporto.net/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.449171860087!2d-8.61643568854383!3d41.14654917121196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464e340499ca5%3A0x86de5dd42c7baf8!2sPlano%20B%20Club%20-%20Porto!5e0!3m2!1spt-PT!2spt!4v1777817187655!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1202,
+    "nome": "Gare Club",
+    "categoria": "Clubbing",
+    "morada": "Rua da Madeira 182, 4000-069 Porto, Portugal",
+    "imagem": "../assets/img/locais/clubbing/gare.jpg",
+    "site": "https://ra.co/clubs/55263",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.4720205949598!2d-8.614465750428996!3d41.14605049763782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24650714201cbd%3A0xced62f482ab8407e!2sGare%20Porto!5e0!3m2!1spt-PT!2spt!4v1777817295958!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1103,
+    "nome": "Fiasco",
+    "categoria": "Clubbing",
+    "morada": "Av. de Rodrigues de Freitas 133, 4300-096 Porto, Portugal",
+    "imagem": "../assets/img/locais/clubbing/fiasco.jpg",
+    "site": "https://www.instagram.com/fiascoporto/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.482518867123!2d-8.600970288543833!3d41.14582137121203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465004a6aa309%3A0x80e21054b8a7f4ff!2sFiasco!5e0!3m2!1spt-PT!2spt!4v1777817457186!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1104,
+    "nome": "Ferro Bar",
+    "categoria": ["Clubbing", "Salas de Concertos"],
+    "morada": "R. da Madeira 84, 4000-427 Porto, Portugal",
+    "imagem": "../assets/img/locais/clubbing/ferro-bar.jpg",
+    "site": "https://www.instagram.com/ferro.bar/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.482088172402!2d-8.611022788543924!3d41.145830771212054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd246532d1331b59%3A0x1f66ce3e4f6fa916!2sFerro%20Bar!5e0!3m2!1spt-PT!2spt!4v1777817583323!5m2!1spt-PT!2spt"
+  },
+
+  {
+    "id": 1105,
+    "nome": "Pérola Negra",
+    "categoria": "Clubbing",
+    "morada": "Rua de Gonçalo Cristóvão 284, 4000-264 Porto",
+    "imagem": "../assets/img/locais/clubbing/perola-negra.jpg",
+    "site": "https://www.instagram.com/perolanegraporto/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.120748050372!2d-8.612926988543357!3d41.153716471210906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464fbf9c65253%3A0xc1cd18c463b00917!2sP%C3%A9rola%20Negra!5e0!3m2!1spt-PT!2spt!4v1777817702229!5m2!1spt-PT!2spt"
+  },
+  {
+    "id": 1106,
+    "nome": "Donau",
+    "categoria": ["Clubbing", "Salas de Concertos"],
+    "morada": "Rua de Cedofeita 443, Porto",
+    "imagem": "../assets/img/locais/clubbing/donau.jpg",
+    "site": "https://www.instagram.com/donauporto/",
+    "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.5360526746877!2d-8.6009001885439!3d41.144652971212125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465ec569f73eb%3A0xfdec844de71eb59f!2sDONAU!5e0!3m2!1spt-PT!2spt!4v1777817799041!5m2!1spt-PT!2spt"
+  }
+
+
+
+
+
+
+]
