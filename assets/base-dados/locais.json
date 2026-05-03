@@ -15,7 +15,7 @@
     "nome": "Lovers & Lollypops",
     "categoria": "Associações Culturais",
     "morada": "Rua de S. Victor 143A, 4000-515 Porto, Portugal",
-    "imagem": "../assets/images/locais/associacoes-culturais/lovers-lollypops.jpg",
+    "imagem": "../assets/images/locais/associacoes-culturais/lovers-lollypop.jpg",
     "site": "https://www.loversandlollypops.net/",
     "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.5818822648266!2d-8.603896150429815!3d41.14365269763899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd24650000db5c17%3A0xb88eb0f96cbb45e1!2sLovers%20%26%20Lollypops!5e0!3m2!1spt-PT!2spt!4v1777814861580!5m2!1spt-PT!2spt"
   },
@@ -141,7 +141,7 @@
   },
 
   {
-    "id": 1103,
+    "id": 1203,
     "nome": "Fiasco",
     "categoria": "Clubbing",
     "morada": "Av. de Rodrigues de Freitas 133, 4300-096 Porto, Portugal",
@@ -151,7 +151,7 @@
   },
 
   {
-    "id": 1104,
+    "id": 1204,
     "nome": "Ferro Bar",
     "categoria": ["Clubbing", "Salas de Concertos"],
     "morada": "R. da Madeira 84, 4000-427 Porto, Portugal",
@@ -161,7 +161,7 @@
   },
 
   {
-    "id": 1105,
+    "id": 1205,
     "nome": "Pérola Negra",
     "categoria": "Clubbing",
     "morada": "Rua de Gonçalo Cristóvão 284, 4000-264 Porto",
@@ -170,7 +170,7 @@
     "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.120748050372!2d-8.612926988543357!3d41.153716471210906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2464fbf9c65253%3A0xc1cd18c463b00917!2sP%C3%A9rola%20Negra!5e0!3m2!1spt-PT!2spt!4v1777817702229!5m2!1spt-PT!2spt"
   },
   {
-    "id": 1106,
+    "id": 1206,
     "nome": "Donau",
     "categoria": ["Clubbing", "Salas de Concertos"],
     "morada": "Rua de Cedofeita 443, Porto",
@@ -178,10 +178,4 @@
     "site": "https://www.instagram.com/donauporto/",
     "coordenadas": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.5360526746877!2d-8.6009001885439!3d41.144652971212125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465ec569f73eb%3A0xfdec844de71eb59f!2sDONAU!5e0!3m2!1spt-PT!2spt!4v1777817799041!5m2!1spt-PT!2spt"
   }
-
-
-
-
-
-
 ]
