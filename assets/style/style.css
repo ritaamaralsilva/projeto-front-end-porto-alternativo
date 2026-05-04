@@ -128,10 +128,15 @@ footer .col-md-6 {
 .btn-warning {
     background-color: var(--accent) !important;
     color: var(--bg-body) !important;
-    /* Inverte a cor para leitura */
     border: 1px solid var(--accent) !important;
     border-radius: 0;
-    /* Opcional: cantos retos dão um look mais indie */
+    transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+    color: #000000 !important;
 }
 
 .btn-outline-warning {
