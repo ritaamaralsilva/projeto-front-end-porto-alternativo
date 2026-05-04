@@ -101,35 +101,21 @@ footer {
 
 
 .navbar .container-fluid {
-    position: relative;
     display: flex;
-    justify-content: center;
     /* Centraliza o conteúdo principal (a lista) */
     align-items: center;
 }
 
 .navbar-nav {
     display: flex;
-    flex-direction: row;
     gap: 15px;
     /* Espaçamento fixo entre links do centro */
     margin: 0 auto;
     /* Força a centralização total */
+    transition: all 0.3s ease;
 }
 
-/* Posiciona o "Início" fixo à esquerda */
-.navbar-nav .nav-item:first-child {
-    position: absolute;
-    left: 15px;
-    margin-right: 0;
-}
 
-/* Posiciona o "Switch" dos temas fixo à direita */
-.navbar-nav .nav-item:last-child {
-    position: absolute;
-    right: 15px;
-    margin-left: 0;
-}
 
 /* Ajuste de cor e estilo para manter a consistência underground */
 .nav-link {
@@ -145,6 +131,66 @@ footer {
     color: #ffc107 !important;
     opacity: 1;
     /* Amarelo Porto Alternativo */
+}
+
+/* hamburguer menu na vertical, layout responsivo para ecras grandes (desktop), mobile e tablet */
+
+/* desktop */
+
+@media (min-width: 992px) {
+    .navbar .container-fluid {
+        position: relative;
+        justify-content: center;
+    }
+
+    .navbar-nav {
+        flex-direction: row;
+        /* Horizontal no PC */
+    }
+
+    /* Posiciona o "Início" fixo à esquerda apenas em Desktop */
+    .navbar-nav .nav-item:first-child {
+        position: absolute;
+        left: 15px;
+        margin-right: 0;
+    }
+
+    /* Posiciona o "Switch" fixo à direita apenas em Desktop */
+    .navbar-nav .nav-item:last-child {
+        position: absolute;
+        right: 15px;
+        margin-left: 0;
+    }
+}
+
+/* --- LAYOUT PARA MOBILE E TABLET (Quando o menu colapsa) --- */
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        flex-direction: column;
+        /* Vertical no Mobile */
+        text-align: center;
+        padding: 20px 0;
+        width: 100%;
+        gap: 20px;
+    }
+
+    /* Removemos o posicionamento absoluto para que os itens sigam a lista vertical */
+    .navbar-nav .nav-item:first-child,
+    .navbar-nav .nav-item:last-child {
+        position: static !important;
+        margin: 0 !important;
+    }
+
+    /* Ajuste para o botão de fechar/abrir não ficar colado ao topo */
+    .navbar-toggler {
+        margin-bottom: 10px;
+        border-color: var(--text-main) !important;
+    }
+
+    .navbar-toggler-icon {
+        /* Garante que o ícone do hamburguer é visível no modo escuro */
+        filter: invert(1);
+    }
 }
 
 #theme-toggle i {
