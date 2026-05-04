@@ -27,17 +27,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             container.innerHTML += `
                 <div class="col">
-                    <div class="card h-100 bg-secondary border-0 shadow text-white">
+                    <div class="card h-100 shadow">
                         <img src="${evento.imagem}" class="card-img-top" alt="${evento.nome}" style="height: 200px; object-fit: cover;">
                         <div class="card-body d-flex flex-column">
                             <div class="mb-2">
-                                <span class="badge bg-warning text-dark">${evento.data}</span>
-                                <span class="badge bg-dark border border-secondary">${evento.hora}</span>
+                                <span class="badge">${evento.data}</span>
+                                <span class="badge border border-secondary">${evento.hora}</span>
                             </div>
                             <h5 class="card-title text-warning">${evento.nome}</h5>
                             <p class="card-text mb-1"><i class="bi bi-geo-alt-fill text-warning"></i> ${evento.local}</p>
-                            <p class="card-text small text-light-50">${catDisplay}</p>
-                            <button onclick="verEventoDetalhes(${evento.id})" class="btn btn-dark mt-auto border-warning">Ver Detalhes</button>
+                            <p class="card-text small">${catDisplay}</p>
+                            <button onclick="verEventoDetalhes(${evento.id})" class="btn mt-auto border-warning">Ver Detalhes</button>
                         </div>
                     </div>
                 </div>

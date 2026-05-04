@@ -2,7 +2,7 @@
 :root {
     /* DARK MODE (Default) */
     --bg-body: #000000;
-    --bg-card: #1c1c1c;
+    --bg-card: #000000;
     --text-main: #ffffff;
     --text-muted: #999999;
     --accent: #ffffff;
@@ -12,7 +12,7 @@
 [data-theme="light"] {
     /* LIGHT MODE */
     --bg-body: #ffffff;
-    --bg-card: #bbbbbb;
+    --bg-card: #ffffff;
     --text-main: #000000;
     --text-muted: #666666;
     --accent: #000000;
@@ -87,7 +87,7 @@ footer {
 
 /* Ajuste de cor e estilo para manter a consistência underground */
 .nav-link {
-    color: #ffffff !important;
+    color: var(--text-main) !important;
     text-transform: uppercase;
     font-size: 0.9rem;
     letter-spacing: 1px;
@@ -97,7 +97,17 @@ footer {
 .nav-link:hover,
 .nav-link.active {
     color: #ffc107 !important;
+    opacity: 1;
     /* Amarelo Porto Alternativo */
+}
+
+#theme-toggle i {
+    color: var(--text-main) !important;
+    transition: color 0.3s ease;
+}
+
+#theme-toggle:hover i {
+    color: #ffc107 !important;
 }
 
 /* Centralizar Footer */
@@ -179,5 +189,49 @@ img {
 
 img:hover {
     filter: grayscale(0%);
+}
+
+/* Estilização Geral dos Cards */
+.card {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    transition: transform 0.3s ease;
+}
+
+/* Badges (Data e Hora) */
+.badge {
+    background-color: var(--text-main) !important;
+    /* Inverte: fundo branco no dark, preto no light */
+    color: var(--bg-body) !important;
+    padding: 0.5em 0.8em;
+    border-radius: 4px;
+}
+
+/* Badge com borda (Hora) */
+.badge.border {
+    background-color: transparent !important;
+    color: var(--text-main) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* Botão "Ver Detalhes" dentro do Card */
+.card .btn {
+    background-color: transparent;
+    color: var(--text-main) !important;
+    border: 1px solid #ffc107 !important;
+    /* Mantém a borda amarela */
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+
+.card .btn:hover {
+    background-color: #ffc107 !important;
+    color: #000000 !important;
+    /* Texto preto no hover para ler bem sobre o amarelo */
+}
+
+/* Ajuste para o texto mutado (Categorias) no card */
+.card-text.small {
+    color: var(--text-muted) !important;
 }
 
