@@ -351,4 +351,71 @@ img:hover {
     filter: invert(1);
 }
 
+/* estilizacao da pagina sobre.html, imagem e legenda da imagem /*
+
+/* --- ESTILIZAÇÃO DA PÁGINA SOBRE --- */
+
+/* Moldura da Imagem */
+.moldura-imagem {
+    /* No Dark Mode, usamos um cinzento muito escuro ou quase preto */
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .moldura-imagem {
+    background-color: #f8f9fa !important;
+    /* Cinzento clarinho no Light Mode */
+    border: 1px solid #dee2e6;
+}
+
+/* Legenda da Foto */
+.legenda-foto {
+    color: var(--text-muted) !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+}
+
+/* Ajuste específico para a legenda ser bem legível no Dark Mode */
+[data-theme="dark"] .legenda-foto {
+    color: #999999 !important;
+    /* Cinzento claro suficiente para ler no preto */
+}
+
+/* Efeito extra: a moldura brilha levemente no hover se a imagem for colorida */
+.moldura-imagem:hover {
+    border-color: #ffc107;
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.2) !important;
+}
+
+/* caixa destaque */
+
+main .caixa-destaque {
+    /* No Dark Mode: um cinzento muito profundo para destacar do preto puro */
+    background-color: rgba(255, 255, 255, 0.07) !important;
+    border-color: #ffc107 !important;
+    transition: background-color 0.3s ease;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+main .caixa-destaque p {
+    /* Garante que o texto da box usa a cor principal do tema */
+    color: var(--text-main) !important;
+    opacity: 1 !important;
+}
+
+[data-theme="light"] main .caixa-destaque {
+    /* No Light Mode: um cinzento muito claro para destacar do branco puro */
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    border-color: #ffc107 !important;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Efeito de brilho subtil no Dark Mode para dar aquele ar underground */
+[data-theme="dark"] .caixa-destaque {
+    box-shadow: inset 10px 0 20px -10px rgba(255, 193, 7, 0.1);
+}
+
+
 
