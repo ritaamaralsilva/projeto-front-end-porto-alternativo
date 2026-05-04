@@ -6,7 +6,7 @@
     --text-main: #ffffff;
     --text-muted: #999999;
     --accent: #ffffff;
-    --border-color: #333333;
+    --border-color: #000000;
 }
 
 [data-theme="light"] {
@@ -16,7 +16,7 @@
     --text-main: #000000;
     --text-muted: #666666;
     --accent: #000000;
-    --border-color: #dee2e6;
+    --border-color: #ffffff;
 }
 
 /* --- APLICAÇÃO OBRIGATÓRIA --- */
@@ -167,6 +167,10 @@ a:hover {
     overflow: hidden;
 }
 
+.carousel-caption {
+    color: white;
+}
+
 .carousel-img-container img {
     height: 100%;
     width: 100%;
@@ -179,6 +183,29 @@ a:hover {
     .carousel-img-container {
         height: 250px;
     }
+}
+
+/* cores do carousel-caption (texto do carrossel) no index.html */
+
+/* Forçar legendas do carrossel sempre com estilo dark para legibilidade sobre as fotos */
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.75) !important;
+    /* Fundo preto com 75% de opacidade */
+    padding: 15px;
+    bottom: 20px;
+}
+
+/* Forçar texto branco nas legendas em qualquer tema */
+.carousel-caption h5,
+.carousel-caption p {
+    color: #ffffff !important;
+    margin-bottom: 0;
+}
+
+/* Garante que os botões de anterior/próximo e indicadores continuam visíveis */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1) grayscale(100%) brightness(200%);
 }
 
 /* imagens a cinza, que só mostram cor com o hover */
