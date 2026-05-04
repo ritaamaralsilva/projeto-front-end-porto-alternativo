@@ -2,21 +2,43 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('form-contacto');
     const alertaSucesso = document.getElementById('msg-sucesso');
 
+    // Injetar as mensagens de erro atraves do JS
+    const mensagens = {
+        'nome': 'Diz-nos o teu nome para sabermos com quem falamos.',
+        'email': 'Introduz um email válido (ex: nome@email.com).',
+        'assunto': 'Escolhe um assunto da lista.',
+        'mensagem': 'Escreve um pequeno texto com a tua dúvida ou sugestão.'
+    };
+
+    // Loop para criar as divs de feedback automaticamente
+    Object.keys(mensagens).forEach(id => {
+        const campo = document.getElementById(id);
+        if (campo) {
+            const feedback = `<div class="invalid-feedback text-warning fw-bold">${mensagens[id]}</div>`;
+            campo.insertAdjacentHTML('afterend', feedback);
+        }
+    });
+
+    // Validação do formulário
     form.addEventListener('submit', function (event) {
-        // isto serve para o caso do formulário nao ser valido para o envio
+        
         if (!form.checkValidity()) {
-            event.preventDefault(); // sem isto, o utilizador nunca chegaria a ver a mensagem de sucesso nem os erros de validação
+            event.preventDefault();
             event.stopPropagation();
         } else {
-            // Se estiver tudo bem, simulamos o envio
-            event.preventDefault(); // Impede o recarregamento da página
+            // Sucesso!
+            event.preventDefault();
             
-            // Esconde o formulário e mostra o sucesso
-            form.classList.add('d-none');
+            // Esconde o formulário
+            form.style.display = 'none';
             alertaSucesso.classList.remove('d-none');
+            
+            // Faz scroll para a mensagem de sucesso
+            alertaSucesso.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Adiciona a classe do Bootstrap para mostrar onde estão os erros
+        // Ativa as cores de validação do Bootstrap
         form.classList.add('was-validated');
+        
     }, false);
 });
