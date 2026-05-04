@@ -1,62 +1,85 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let todosLocais = [];
-
-    // --- LÓGICA DE DARK/LIGHT MODE ---
+    
+    // --- 1. LÓGICA DE DARK/LIGHT MODE (Prioridade Máxima) ---
     const themeToggle = document.getElementById("theme-toggle");
     const themeIcon = document.getElementById("theme-icon");
     const htmlElement = document.documentElement;
 
-    // Carregar preferência ou default para dark
+    // Aplica o tema guardado imediatamente ao carregar
     const savedTheme = localStorage.getItem("theme") || "dark";
     htmlElement.setAttribute("data-theme", savedTheme);
-    updateIcon(savedTheme);
-
-    if (themeToggle) {
-        themeToggle.addEventListener("click", () => {
-            const currentTheme = htmlElement.getAttribute("data-theme");
-            const newTheme = currentTheme === "dark" ? "light" : "dark";
-            
-            htmlElement.setAttribute("data-theme", newTheme);
-            localStorage.setItem("theme", newTheme);
-            updateIcon(newTheme);
-        });
-    }
-
-    function updateIcon(theme) {
-        if (!themeIcon) return;
-        if (theme === "light") {
+    
+    if (themeIcon) {
+        if (savedTheme === "light") {
             themeIcon.classList.replace("bi-moon-stars", "bi-sun-fill");
         } else {
             themeIcon.classList.replace("bi-sun-fill", "bi-moon-stars");
         }
     }
 
-    // Carregar Dados
-    fetch('../assets/base-dados/locais.json')
-        .then(res => res.json())
-        .then(data => {
-            todosLocais = data;
-            renderizarLocais(todosLocais);
+    // Listener para o clique no switch
+    if (themeToggle) {
+        themeToggle.addEventListener("click", (e) => {
+            e.preventDefault();
+            const currentTheme = htmlElement.getAttribute("data-theme");
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            
+            htmlElement.setAttribute("data-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+            
+            if (themeIcon) {
+                if (newTheme === "light") {
+                    themeIcon.classList.replace("bi-moon-stars", "bi-sun-fill");
+                } else {
+                    themeIcon.classList.replace("bi-sun-fill", "bi-moon-stars");
+                }
+            }
         });
+    }
 
-    // Função para criar os Cards
+    // --- 2. ANIMAÇÃO DAS LETRAS ---
+    const titulo = document.querySelector(".animar-letras");
+    if (titulo) {
+        const textoOriginal = titulo.textContent.trim();
+        titulo.innerHTML = ""; 
+
+        [...textoOriginal].forEach(letra => {
+            const span = document.createElement("span");
+            span.innerHTML = letra === " " ? "&nbsp;" : letra;
+            titulo.appendChild(span);
+        });
+    }
+
+    // --- 3. LÓGICA DE LOCAIS (Fetch e Render) ---
+    let todosLocais = [];
+    const listaLocaisContainer = document.getElementById('lista-locais');
+    
+    if (listaLocaisContainer) {
+        fetch('../assets/base-dados/locais.json')
+            .then(res => res.json())
+            .then(data => {
+                todosLocais = data;
+                renderizarLocais(todosLocais);
+            })
+            .catch(err => console.error("Erro ao carregar locais:", err));
+    }
+
     function renderizarLocais(lista) {
-        const container = document.getElementById('lista-locais');
-        container.innerHTML = ""; // Limpa o contentor
+        if (!listaLocaisContainer) return;
+        listaLocaisContainer.innerHTML = ""; 
 
         lista.forEach(local => {
-            // Lógica para lidar com categorias (String ou Array)
             const categoriasStr = Array.isArray(local.categoria) 
                 ? local.categoria.join(" | ") 
                 : local.categoria;
 
-            container.innerHTML += `
+            listaLocaisContainer.innerHTML += `
                 <div class="col">
-                    <div class="card h-100 border-0 shadow-sm border">
+                    <div class="card h-100 shadow-sm">
                         <img src="${local.imagem}" class="card-img-top" alt="${local.nome}" style="height: 200px; object-fit: cover;">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title text-warning">${local.nome}</h5>
-                            <p class="card-text small">${categoriasStr}</p>
+                            <p class="card-text small text-muted">${categoriasStr}</p>
                             <button onclick="verDetalhes(${local.id})" class="btn btn-dark mt-auto border-warning">Ver Local</button>
                         </div>
                     </div>
@@ -65,10 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Sistema de Filtros
+    // --- 4. SISTEMA DE FILTROS ---
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
-            // Estética dos botões
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
 
@@ -77,16 +99,19 @@ document.addEventListener("DOMContentLoaded", () => {
             if (filtro === "todos") {
                 renderizarLocais(todosLocais);
             } else {
-                // Filtra verificando se o valor está presente no array ou string
-                const filtrados = todosLocais.filter(l => 
-                    Array.isArray(l.categoria) ? l.categoria.includes(filtro) : l.categoria === filtro
-                );
+                const filtrados = todosLocais.filter(l => {
+                    const cat = l.categoria;
+                    if (Array.isArray(cat)) {
+                        return cat.some(c => c.toLowerCase().includes(filtro.toLowerCase()));
+                    }
+                    return cat.toLowerCase().includes(filtro.toLowerCase());
+                });
                 renderizarLocais(filtrados);
             }
         });
     });
 
-    // Função Global para o Modal (precisa ser global para o onclick funcionar)
+    // --- 5. FUNÇÃO GLOBAL PARA O MODAL ---
     window.verDetalhes = (id) => {
         const local = todosLocais.find(l => l.id === id);
         if (!local) return;
@@ -99,7 +124,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('modalSite').href = local.site;
         document.getElementById('modalMapa').src = local.coordenadas;
 
-        const myModal = new bootstrap.Modal(document.getElementById('localModal'));
-        myModal.show();
+        const modalElement = document.getElementById('localModal');
+        if (modalElement) {
+            const myModal = new bootstrap.Modal(modalElement);
+            myModal.show();
+        }
     };
 });
