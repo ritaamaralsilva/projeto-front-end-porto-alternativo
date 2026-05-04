@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Função para o Modal de Detalhes com Validação de Bilheteira 
-    //usei window porque assim garanto que o atributo onclick="verEventoDetalhes(...)" que injetei nos cards consiga encontrar a funçao
+    //usei window porque assim garanto que o atributo onclick="verEventoDetalhes(...)" que injetei nos cards, consiga encontrar a funçao
     window.verEventoDetalhes = (id) => {
         const evento = todosEventos.find(e => e.id === id);
         if (!evento) return;
