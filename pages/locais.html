@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -27,15 +27,15 @@
     <title>Porto Alternativo</title>
 </head>
 
-<body class="bg-dark text-light d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100">
 
-    <header class="text-center sticky-top bg-dark border-bottom border-secondary">
-        <!-- Logo adaptada: substitui o worten-logo.svg por um ícone de música ou texto -->
-        <a href="../pages/index.html">
-            <h2 class="pt-3 text-warning fw-bold">PORTO <span class="text-white">ALTERNATIVO</span></h2>
+    <header class="text-center sticky-top border-bottom border-secondary">
+
+        <a href="../pages/index.html" class="text-decoration-none">
+            <h2 class="pt-3 fw-bold">PORTO ALTERNATIVO</h2>
         </a>
 
-        <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -43,7 +43,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
+                    <div class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="../pages/index.html">Início</a>
                         </li>
@@ -62,9 +62,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="../pages/contacto.html">Contacto</a>
                         </li>
-                    </ul>
+
+                        <!-- NOVO: Botão Switch de Tema -->
+                        <li class="nav-item ms-lg-auto">
+                            <button id="theme-toggle" class="btn btn-link nav-link">
+                                <i id="theme-icon" class="bi bi-moon-stars"></i>
+                            </button>
+                        </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
         </nav>
     </header>
 
@@ -124,7 +131,7 @@
     <!-- ... (Footer e Scripts igual ao index.html) ... -->
 
     <!-- Footer estilo Worten adaptado -->
-    <footer class="container-fluid text-light text-center p-4 bg-black border-top border-secondary">
+    <footer class="container-fluid text-center p-4 border-top border-secondary">
         <div class="row align-items-center">
             <div class="col-md-6 text-md-start">
                 <p class="mb-0">© 2026 PORTO ALTERNATIVO - A Agenda Cultural da Música Underground </p>
