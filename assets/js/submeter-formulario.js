@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
    // configuração de Mensagens de Erro/Sugestão
     const mensagens = {
-        'titulo': 'Diz-nos o nome do evento para que todos o identifiquem.',
+        'nome': 'Diz-nos o nome do evento para que todos o identifiquem.',
         'data': 'Escolhe uma data válida (hoje ou futura).',
         'hora': 'Indica a hora a que o evento começa.',
         'local': 'Seleciona um local da lista ou escolhe "Outro".',
