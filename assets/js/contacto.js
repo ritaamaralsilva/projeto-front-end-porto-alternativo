@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const alertaSucesso = document.getElementById('msg-sucesso');
 
     // Introduzi as mensagens de erro atraves do JS
+    // Centralizei as mensagens num objeto JavaScript e nao no HTML, porque facilita a alteração dos textos no futuro (basta mudar num sítio)
     const mensagens = {
         'nome': 'Diz-nos o teu nome para sabermos com quem falamos.',
         'email': 'Introduz um email válido (ex: nome@email.com).',
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     // Loop para criar as divs de feedback automaticamente
+    // usei insertAdjacentHTML pq permite gerar as divs de erro automaticamente para cada campo, para nao repetir codigo em HTML
     Object.keys(mensagens).forEach(id => {
         const campo = document.getElementById(id);
         if (campo) {
@@ -24,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         if (!form.checkValidity()) {
             event.preventDefault();
-            event.stopPropagation();
+            event.stopPropagation(); 
         } else {
             // Sucesso!
             event.preventDefault();
