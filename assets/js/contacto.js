@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('form-contacto');
     const alertaSucesso = document.getElementById('msg-sucesso');
 
-    // Injetar as mensagens de erro atraves do JS
+    // Introduzi as mensagens de erro atraves do JS
     const mensagens = {
         'nome': 'Diz-nos o teu nome para sabermos com quem falamos.',
         'email': 'Introduz um email válido (ex: nome@email.com).',
