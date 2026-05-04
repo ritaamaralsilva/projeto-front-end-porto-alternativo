@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             form.style.display = 'none';
             alertaSucesso.classList.remove('d-none');
             
+            
             // Faz scroll para a mensagem de sucesso
             alertaSucesso.scrollIntoView({ behavior: 'smooth' });
         }

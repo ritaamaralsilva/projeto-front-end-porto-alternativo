@@ -2,13 +2,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById('form-submissao');
     const selectLocal = document.getElementById('local');
     const inputData = document.getElementById('data');
+    // Mensagem de sucesso
+    const alertaSucesso = document.getElementById('alerta-sucesso');
 
-    // --- Erro caso se preencha uma data anterior à atual---
-    // Define a data mínima que o utilizador pode selecionar no calendário
+   // configuração de Mensagens de Erro/Sugestão
+    const mensagens = {
+        'titulo': 'Diz-nos o nome do evento para que todos o identifiquem.',
+        'data': 'Escolhe uma data válida (hoje ou futura).',
+        'hora': 'Indica a hora a que o evento começa.',
+        'local': 'Seleciona um local da lista ou escolhe "Outro".',
+        'bilheteira': 'Introduz o link para a compra de bilhetes (ex: http://...)',
+        'descricao': 'Explica brevemente o que vai acontecer no teu evento.'
+    };
+
+    // loop para criar as divs de feedback automaticamente
+    Object.keys(mensagens).forEach(id => {
+        const campo = document.getElementById(id);
+        if (campo) {
+            const feedback = `<div class="invalid-feedback text-warning fw-bold">${mensagens[id]}</div>`;
+            campo.insertAdjacentHTML('afterend', feedback);
+        }
+    });
+
+    // erro caso se preencha uma data anterior à atual
     const hoje = new Date().toISOString().split('T')[0];
     inputData.setAttribute('min', hoje);
 
-    // --- fetch dos locais de eventos a partir do json locais.json ---
+    // fetch dos locais
     fetch('../assets/base-dados/locais.json')
         .then(res => res.json())
         .then(locais => {
@@ -19,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 option.textContent = local.nome;
                 selectLocal.appendChild(option);
             });
-            // Adiciona a opção "Outro" no final
             const outro = document.createElement('option');
             outro.value = "Outro";
             outro.textContent = "Outro (especificar na descrição)";
@@ -30,32 +49,32 @@ document.addEventListener("DOMContentLoaded", () => {
             selectLocal.innerHTML = '<option disabled>Erro ao carregar locais</option>';
         });
 
-    // --- Valida ao submeter pedido de evento ---
+    // valida ao submeter pedido de evento 
     form.addEventListener('submit', (event) => {
         const dataSelecionada = inputData.value;
         let formularioValido = true;
-        let mensagemErro = "";
+        
+        // limpar validade p o Bootstrap validar corretamente
+        inputData.setCustomValidity("");
 
-        // Verificação manual da data (segurança extra)
         if (dataSelecionada < hoje) {
             formularioValido = false;
-            mensagemErro = "A data do evento não pode ser anterior a hoje!";
+            // marcar como inválido para o Bootstrap mostrar a div que criámos
+            inputData.setCustomValidity("Data inválida");
         }
 
-        // Verificação de campos vazios (Bootstrap)
         if (!form.checkValidity() || !formularioValido) {
             event.preventDefault();
             event.stopPropagation();
-            
-            // Se o erro for da data, mostra o erro específico, senão mostra erro geral
-            alert(mensagemErro || "Por favor, preenche todos os campos obrigatórios.");
+            // tiramos o alert() porque as divs aparecem sozinhas
         } else {
             event.preventDefault();
             
-            // Lógica de sucesso (mostrar alerta, console.log, etc.)
+            // lógica de sucesso igual ao formulário de contacto
             console.log("Evento válido! Pronto para submeter.");
-            document.getElementById('alerta-sucesso').classList.remove('d-none');
-            form.classList.add('d-none');
+            form.style.display = 'none'; // Esconde o form
+            alertaSucesso.classList.remove('d-none'); // Mostra o sucesso
+            alertaSucesso.scrollIntoView({ behavior: 'smooth' }); // Faz scroll
         }
 
         form.classList.add('was-validated');
