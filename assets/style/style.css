@@ -2,7 +2,7 @@
 :root {
     /* DARK MODE (Default) */
     --bg-body: #000000;
-    --bg-card: #111111;
+    --bg-card: #1c1c1c;
     --text-main: #ffffff;
     --text-muted: #999999;
     --accent: #ffffff;
@@ -12,7 +12,7 @@
 [data-theme="light"] {
     /* LIGHT MODE */
     --bg-body: #ffffff;
-    --bg-card: #f8f9fa;
+    --bg-card: #bbbbbb;
     --text-main: #000000;
     --text-muted: #666666;
     --accent: #000000;
@@ -26,7 +26,7 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* O teu main e header também precisam de herdar estas cores */
+/* O main e header também herdam as mesmas cores do body */
 main,
 header,
 footer,
@@ -35,7 +35,6 @@ footer,
     color: var(--text-main) !important;
 }
 
-/* Garante que os títulos são visíveis */
 h1,
 h2,
 h3,
