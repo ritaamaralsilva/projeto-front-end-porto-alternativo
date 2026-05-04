@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log("Página Sobre carregada com sucesso!");
 
-    // Quando passas o rato na imagem, ela ganha um brilho
+    // Quando passamos o rato na imagem, ela ganha um brilho - fica mais clara
     const molduraFoto = document.querySelector('.bg-secondary');
 
     if (molduraFoto) {
