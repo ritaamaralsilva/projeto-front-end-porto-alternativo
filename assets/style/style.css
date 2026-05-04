@@ -9,6 +9,52 @@
     --border-color: #000000;
 }
 
+header .animar-letras span {
+    display: inline-block !important;
+    transition: color 0.3s ease, transform 0.2s ease !important;
+    cursor: inherit;
+}
+
+/* Quando se passa o rato numa letra específica, muda para amarelo */
+header .animar-letras span:hover {
+    color: #ffc107 !important;
+    /* Amarelo Porto Alternativo */
+    transform: translateY(-2px);
+    /* Pequeno salto opcional para dar vida */
+}
+
+/* --- EFEITO COR AMARELA NOS CARDS (DARK MODE) --- */
+
+/* No Dark Mode, adicionamos o glow amarelo e borda */
+[data-theme="dark"] .card {
+    border: 1px solid rgba(255, 193, 7, 0.3) !important;
+    /* Borda amarela com 30% de opacidade */
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.15) !important;
+    /* Shadow amarela subtil */
+    transition: all 0.3s ease;
+}
+
+/* Efeito de destaque quando se passa o rato no Dark Mode */
+[data-theme="dark"] .card:hover {
+    border: 1px solid rgba(255, 193, 7, 1) !important;
+    /* Borda fica totalmente amarela */
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.4) !important;
+    /* Glow mais intenso */
+    transform: translateY(-5px);
+    /* Pequeno salto para dar feedback visual */
+}
+
+/* Mantém o Light Mode com o estilo padrão do Bootstrap (Sombra cinza/preta) */
+[data-theme="light"] .card {
+    border: 1px solid #dee2e6 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
 [data-theme="light"] {
     /* LIGHT MODE */
     --bg-body: #ffffff;
@@ -266,4 +312,43 @@ img:hover {
 .card-text.small {
     color: var(--text-muted) !important;
 }
+
+/* --- ESTILO MODERNO DO MODAL (Glassmorphism) no eventos.html e locais.html--- */
+.modal-content {
+    /* Usa a cor de fundo do tema com 80% de opacidade */
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(10px);
+    /* Cria o efeito de vidro foscado */
+    -webkit-backdrop-filter: blur(10px);
+    /* Suporte para Safari */
+
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    /* Shadow ligeiramente mais escuro */
+}
+
+/* Ajuste automático para o modo claro */
+[data-theme="light"] .modal-content {
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Garante que o texto dentro do modal segue o tema */
+.modal-content p,
+.modal-content h6,
+.modal-content strong {
+    color: var(--text-main) !important;
+}
+
+/* Remove as bordas rígidas internas para um look mais limpo */
+.modal-header,
+.modal-footer {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Ajuste para o botão fechar no Light Mode */
+[data-theme="light"] .btn-close {
+    filter: invert(1);
+}
+
 
