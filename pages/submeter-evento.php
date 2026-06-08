@@ -1,79 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- FAVICON -->
-    <link rel="shortcut icon" href="../assets/images/favicon.jpg" type="image">
-
-    <!-- BOOTSTRAP CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-    <!-- GOOGLE FONTS - OPEN SANS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-        rel="stylesheet">
-
-    <!-- BOOTSTRAP ICONS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
-    <!-- MEU CSS -->
-    <link rel="stylesheet" href="../assets/style/style.css">
-
-    <title>Porto Alternativo</title>
-</head>
-
-<body class="d-flex flex-column min-vh-100">
-
-    <header class="text-center sticky-top border-bottom border-secondary">
-
-        <a href="./sobre.html" class="text-decoration-none">
-            <h2 class="pt-3 fw-bold animar-letras">PORTO ALTERNATIVO</h2>
-        </a>
-
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../index.html">Início</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./locais.html">Locais</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./eventos.html">Agenda</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./submeter-evento.html">Submeter Evento</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./sobre.html">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./contacto.html">Contacto</a>
-                        </li>
-
-                        <!-- NOVO: Botão Switch de Tema -->
-                        <li class="nav-item ms-lg-auto">
-                            <button id="theme-toggle" class="btn btn-link nav-link">
-                                <i id="theme-icon" class="bi bi-moon-stars"></i>
-                            </button>
-                        </li>
-                        </ul>
-                    </div>
-                </div>
-        </nav>
-    </header>
+<?php
+require_once '../includes/config.php';
+$pageTitle = 'Submeter Evento | Porto Alternativo';
+$currentPage = 'submeter';
+require_once '../includes/header.php';
+require_once '../includes/nav.php';
+?>
 
     <!-- ... (Header igual ao index.html) ... -->
 
@@ -142,27 +73,6 @@
     </main>
 
     <!-- Footer -->
-    <footer class="container-fluid text-center p-4 border-top border-secondary">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <p class="mb-0">© 2026 PORTO ALTERNATIVO - A Agenda Cultural da Música Underground </p>
-            </div>
-            <div class="col-md-6 mt-3 mt-md-0">
-                <a href="#" class="text-warning"><i class="bi bi-facebook mx-2 fs-4"></i></a>
-                <a href="#" class="text-warning"><i class="bi bi-instagram mx-2 fs-4"></i></a>
-                <a href="#" class="text-warning"><i class="bi bi-spotify mx-2 fs-4"></i></a>
-                <a href="#" class="text-warning"><i class="bi bi-youtube mx-2 fs-4"></i></a>
-            </div>
-        </div>
-    </footer>
+    <?php require_once '../includes/footer.php'; ?>
 
-    <!-- BOOTSTRAP JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- JS -->
-    <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/submeter-formulario.js"></script>
-
-</body>
-
-</html>
+    
