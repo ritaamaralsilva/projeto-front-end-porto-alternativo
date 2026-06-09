@@ -28,16 +28,10 @@ document.addEventListener('DOMContentLoaded', function () {
             event.preventDefault();
             event.stopPropagation(); 
         } else {
-            // Sucesso!
-            event.preventDefault();
-            
-            // Esconde o formulário
-            form.style.display = 'none';
-            alertaSucesso.classList.remove('d-none');
-            
-            
-            // Faz scroll para a mensagem de sucesso
-            alertaSucesso.scrollIntoView({ behavior: 'smooth' });
+            // o form envia para mail.php
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerText = 'A enviar...';
         }
 
         // Ativa as cores de validação do Bootstrap
