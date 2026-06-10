@@ -1,66 +1,234 @@
 <?php
+require_once '../includes/auth.php';
 require_once '../includes/config.php';
+require_once __DIR__ . '/../db/Database.php';
+
+/* =========================
+   GET ID (MODAL DETALHE)
+========================= */
+$eventoSelecionado = null;
+
+if (isset($_GET['id'])) {
+    $stmt = $pdo->prepare("
+        SELECT e.*, l.nome AS local_nome, l.coordenadas AS local_coordenadas
+        FROM eventos e
+        LEFT JOIN locais l ON l.id = e.local_id
+        WHERE e.id = ?
+    ");
+    $stmt->execute([(int)$_GET['id']]);
+    $eventoSelecionado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($eventoSelecionado) {
+        $stmtCat = $pdo->prepare("
+            SELECT c.nome
+            FROM categorias c
+            JOIN evento_categoria ec ON c.id = ec.categoria_id
+            WHERE ec.evento_id = ?
+        ");
+        $stmtCat->execute([$eventoSelecionado['id']]);
+        $eventoSelecionado['categorias'] = $stmtCat->fetchAll(PDO::FETCH_COLUMN);
+    }
+}
+
+/* =========================
+   LISTAR TODOS OS EVENTOS
+========================= */
+$stmt = $pdo->query("
+    SELECT e.*, l.nome AS local_nome
+    FROM eventos e
+    LEFT JOIN locais l ON l.id = e.local_id
+    ORDER BY e.data ASC
+");
+$eventos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmtCats = $pdo->query("
+    SELECT ec.evento_id, c.nome
+    FROM categorias c
+    JOIN evento_categoria ec ON c.id = ec.categoria_id
+");
+$todasCats = $stmtCats->fetchAll(PDO::FETCH_ASSOC);
+
+$catsPorEvento = [];
+foreach ($todasCats as $row) {
+    $catsPorEvento[$row['evento_id']][] = $row['nome'];
+}
+
+foreach ($eventos as &$ev) {
+    $ev['categorias'] = $catsPorEvento[$ev['id']] ?? [];
+}
+unset($ev);
+
 $pageTitle = 'Eventos | Porto Alternativo';
 $currentPage = 'eventos';
+
 require_once '../includes/header.php';
 require_once '../includes/nav.php';
 ?>
 
 <main class="container my-5 flex-grow-1">
+
     <h1 class="text-center mb-4 text-warning">Agenda de Eventos</h1>
 
-    <!-- FILTROS POR CATEGORIA MUSICAL -->
-    <div class="d-flex justify-content-center gap-2 mb-5 flex-wrap">
-        <button class="btn btn-outline-warning filter-btn active" data-filter="todos">Todos</button>
-        <button class="btn btn-outline-warning filter-btn" data-filter="Techno">Techno</button>
-        <button class="btn btn-outline-warning filter-btn" data-filter="Rock">Rock/Metal</button>
-        <button class="btn btn-outline-warning filter-btn" data-filter="Experimental">Experimental</button>
-        <button class="btn btn-outline-warning filter-btn" data-filter="Eletrónica">Eletrónica</button>
-    </div>
+    <?php if (isLoggedIn()): ?>
+        <a href="<?= BASE_URL ?>/pages/eventos-crud/criar.php" class="btn btn-warning mb-4">
+            Criar Evento
+        </a>
+    <?php endif; ?>
 
-    <!-- LISTA DE EVENTOS || deixei o contentor vazio de propósito no HTML. O conteúdo é injetado pelo ficheiro eventos.js, os dados estão num array e o script cria os cards automaticamente-->
-    <div id="lista-eventos" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <!-- Cards injetados via JS -->
-    </div>
-</main>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
-<!-- MODAL DE DETALHES DO EVENTO || cada card de evento tem um botão "Ver Mais". No JS, quando esse botao é clicado, pego no ID desse evento e preencho os campos do modal-->
-<div class="modal fade" id="eventoModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content border-secondary">
-            <div class="modal-header border-secondary">
-                <h5 class="modal-title text-warning" id="modalNome">Nome do Evento</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <img id="modalImagem" src="" class="img-fluid rounded mb-3" alt="">
-                        <p><i class="bi bi-calendar-event text-warning"></i> <strong>Data:</strong> <span
-                                id="modalData"></span></p>
-                        <p><i class="bi bi-clock text-warning"></i> <strong>Hora:</strong> <span
-                                id="modalHora"></span></p>
-                        <p><i class="bi bi-geo-alt text-warning"></i> <strong>Local:</strong> <span
-                                id="modalLocal"></span></p>
-                        <p id="modalDescricao"></p>
-                        <a id="modalBilheteira" href="#" target="_blank"
-                            class="btn btn-warning w-100 mt-2 fw-bold">Bilheteira / Info</a>
-                    </div>
-                    <div class="col-md-6">
-                        <h6>Localização:</h6>
+        <?php foreach ($eventos as $evento): ?>
+            <div class="col">
+                <div class="card h-100 shadow">
 
-                        <!--a classe do Bootstrap ratio ratio-4x3 serve para manter a proporção do mapa-->
-                        <div class="ratio ratio-4x3">
-                            <iframe id="modalMapa" src="" style="border: 0;" allowfullscreen=""
-                                loading="lazy"></iframe>
+                    <img src="<?= htmlspecialchars($evento['imagem']) ?>" class="card-img-top"
+                        style="height:200px;object-fit:cover;">
+
+                    <div class="card-body d-flex flex-column">
+
+                        <div class="mb-2">
+                            <span class="badge"><?= htmlspecialchars($evento['data']) ?></span>
+                            <span class="badge border border-secondary"><?= htmlspecialchars($evento['hora']) ?></span>
                         </div>
+
+                        <h5 class="card-title text-warning">
+                            <?= htmlspecialchars($evento['nome']) ?>
+                        </h5>
+
+                        <p class="mb-1">
+                            <i class="bi bi-geo-alt-fill text-warning"></i>
+                            <?= htmlspecialchars($evento['local_nome']) ?>
+                        </p>
+
+                        <p class="small text-muted">
+                            <?= implode(" | ", array_map('htmlspecialchars', $evento['categorias'])) ?>
+                        </p>
+
+                        <a href="eventos.php?id=<?= $evento['id'] ?>"
+                            class="btn btn-dark border-warning mt-auto">
+                            Ver Detalhes
+                        </a>
+
+                        <?php if (isLoggedIn()): ?>
+                            <div class="mt-2 d-flex gap-2">
+                                <a href="eventos-crud/editar.php?id=<?= $evento['id'] ?>"
+                                    class="btn btn-sm btn-primary">Editar</a>
+
+                                <button class="btn btn-sm btn-danger"
+                                    onclick="setDeleteId(<?= $evento['id'] ?>)"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                    Eliminar
+                                </button>
+                            </div>
+                        <?php endif; ?>
+
                     </div>
                 </div>
             </div>
+        <?php endforeach; ?>
+
+    </div>
+</main>
+
+<!-- =========================
+     MODAL DETALHE (PHP)
+========================= -->
+<?php if ($eventoSelecionado): ?>
+    <div class="modal show d-block" tabindex="-1" style="background: rgba(0,0,0,0.7);">
+
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark text-light border-secondary">
+
+                <div class="modal-header border-secondary">
+                    <h5 class="text-warning">
+                        <?= htmlspecialchars($eventoSelecionado['nome']) ?>
+                    </h5>
+                    <a href="eventos.php" class="btn-close btn-close-white"></a>
+                </div>
+
+                <div class="modal-body row">
+
+                    <div class="col-md-6">
+                        <img src="<?= htmlspecialchars($eventoSelecionado['imagem']) ?>"
+                            class="img-fluid rounded mb-3">
+
+                        <p><strong>Data:</strong>
+                            <?= htmlspecialchars($eventoSelecionado['data']) ?>
+                        </p>
+
+                        <p><strong>Hora:</strong>
+                            <?= htmlspecialchars($eventoSelecionado['hora']) ?>
+                        </p>
+
+                        <p><strong>Local:</strong>
+                            <?= htmlspecialchars($eventoSelecionado['local_nome']) ?>
+                        </p>
+
+                        <p><strong>Categorias:</strong>
+                            <?= implode(" | ", array_map('htmlspecialchars', $eventoSelecionado['categorias'])) ?>
+                        </p>
+
+                        <p><?= htmlspecialchars($eventoSelecionado['descricao'] ?? '') ?></p>
+
+                        <?php if (!empty($eventoSelecionado['bilheteira'])): ?>
+                            <a href="<?= htmlspecialchars($eventoSelecionado['bilheteira']) ?>"
+                                target="_blank"
+                                class="btn btn-warning w-100 mt-2">
+                                Comprar Bilhete
+                            </a>
+                        <?php endif; ?>
+                    </div>
+
+                    <div class="col-md-6">
+                        <?php if (!empty($eventoSelecionado['local_coordenadas'])): ?>
+                            <h6>Localização</h6>
+                            <div class="ratio ratio-4x3">
+                                <iframe src="<?= $eventoSelecionado['local_coordenadas'] ?>"
+                                    style="border:0;" loading="lazy"></iframe>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<!-- =========================
+     MODAL ELIMINAR
+========================= -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-light border-secondary">
+
+            <div class="modal-header border-secondary">
+                <h5 class="text-warning">Confirmar eliminação</h5>
+                <button type="button" class="btn-close btn-close-white"
+                    data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                Tens a certeza que queres eliminar este evento?
+                Esta ação não pode ser revertida.
+            </div>
+
+            <div class="modal-footer border-secondary">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a id="confirmDeleteBtn" href="#" class="btn btn-danger">Eliminar</a>
+            </div>
+
         </div>
     </div>
 </div>
 
-<!-- Footer -->
-<?php require_once '../includes/footer.php'; ?>
+<script>
+    function setDeleteId(id) {
+        document.getElementById('confirmDeleteBtn').href =
+            'eventos-crud/eliminar.php?id=' + id;
+    }
+</script>
 
+<?php require_once '../includes/footer.php'; ?>

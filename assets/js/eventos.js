@@ -1,118 +1,17 @@
-// Lógica da Agenda de Eventos - Porto Alternativo || o JS trata da lógica e o HTML serve apenas de esqueleto
-// serve para garantir que o JavaScript só começa a correr depois de todo o HTML da pagina estar carregado
-document.addEventListener("DOMContentLoaded", () => {
-    let todosEventos = [];
+window.verEvento = (id) => {
+    const evento = eventos.find(e => e.id == id);
+    if (!evento) return;
 
-    // Carregar os dados do ficheiro JSON || O fetch() serve para ir buscar dados a um ficheiro externo, neste caso o eventos.json, para não ter de escrever o HTML de cada concerto à mão
-    fetch('../assets/base-dados/eventos.json')
-        .then(res => {
-            if (!res.ok) throw new Error("Erro ao carregar o ficheiro de eventos.");
-            return res.json();
-        })
-        .then(data => {
-            todosEventos = data;
-            renderizarEventos(todosEventos);
-        })
-        .catch(err => console.error("Erro:", err));
+    document.getElementById('modalNome').innerText       = evento.nome        ?? '';
+    document.getElementById('modalImagem').src           = evento.imagem       ?? '';
+    document.getElementById('modalData').innerText       = evento.data         ?? '';
+    document.getElementById('modalHora').innerText       = evento.hora         ?? '';
+    document.getElementById('modalLocal').innerText      = evento.local_nome   ?? '';
+    document.getElementById('modalCategorias').innerText = (evento.categorias ?? []).join(' | ');
+    document.getElementById('modalDescricao').innerText  = evento.descricao    ?? '';
 
-    // Função para desenhar os cards na página
-    function renderizarEventos(lista) {
-        const container = document.getElementById('lista-eventos');
-        if (!container) return; 
-        
-        container.innerHTML = ""; 
+    const modalEl = document.getElementById('eventoModal');
+    if (!modalEl) return;
 
-        lista.forEach(evento => {
-            const catDisplay = Array.isArray(evento.categoria) ? evento.categoria.join(" | ") : evento.categoria;
-
-            container.innerHTML += `
-                <div class="col">
-                    <div class="card h-100 shadow">
-                        <img src="${evento.imagem}" class="card-img-top" alt="${evento.nome}" style="height: 200px; object-fit: cover;">
-                        <div class="card-body d-flex flex-column">
-                            <div class="mb-2">
-                                <span class="badge">${evento.data}</span>
-                                <span class="badge border border-secondary">${evento.hora}</span>
-                            </div>
-                            <h5 class="card-title text-warning">${evento.nome}</h5>
-                            <p class="card-text mb-1"><i class="bi bi-geo-alt-fill text-warning"></i> ${evento.local}</p>
-                            <p class="card-text small">${catDisplay}</p>
-                            <button onclick="verEventoDetalhes(${evento.id})" class="btn mt-auto border-warning">Ver Detalhes</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-    }
-
-    // Lógica dos Filtros de Categoria || o filter cria uma nova lista apenas com os eventos que correspondem à categoria clicada
-    // o some serve para verificar se pelo menos uma dessas categorias coincide com o filtro selecionado
-    const botoesFiltro = document.querySelectorAll('.filter-btn');
-    botoesFiltro.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            botoesFiltro.forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-
-            const filtro = e.target.getAttribute('data-filter');
-            
-            const filtrados = filtro === "todos" 
-                ? todosEventos 
-                : todosEventos.filter(ev => 
-                    Array.isArray(ev.categoria) 
-                        ? ev.categoria.some(c => c.toLowerCase().includes(filtro.toLowerCase())) // toLowerCase p nao falhar se houver letras maiusculas ou minusculas diferentes
-                        : ev.categoria.toLowerCase().includes(filtro.toLowerCase())
-                );
-            
-            renderizarEventos(filtrados);
-        });
-    });
-
-    // Função para o Modal de Detalhes com Validação de Bilheteira 
-    //usei window porque assim garanto que o atributo onclick="verEventoDetalhes(...)" que injetei nos cards, consiga encontrar a funçao
-    window.verEventoDetalhes = (id) => {
-        const evento = todosEventos.find(e => e.id === id);
-        if (!evento) return;
-
-        // Preencher dados básicos
-        document.getElementById('modalNome').innerText = evento.nome;
-        document.getElementById('modalImagem').src = evento.imagem;
-        document.getElementById('modalData').innerText = evento.data;
-        document.getElementById('modalHora').innerText = evento.hora;
-        document.getElementById('modalLocal').innerText = evento.local;
-        document.getElementById('modalDescricao').innerText = evento.descricao;
-        document.getElementById('modalMapa').src = evento.coordenadas;
-
-        // Lógica do Botão de Bilheteira
-        const btnBilheteira = document.getElementById('modalBilheteira');
-        
-        if (evento.bilheteira.startsWith('http')) {
-            // Se for um link real
-            btnBilheteira.href = evento.bilheteira;
-            btnBilheteira.innerText = "Comprar Bilhete";
-            btnBilheteira.classList.remove('disabled', 'btn-secondary');
-            btnBilheteira.classList.add('btn-warning');
-            btnBilheteira.style.pointerEvents = 'auto';
-        } else {
-            // Se for texto como "No local" ou "Porta" - sem sitio para comprar online, só à porta
-            if (evento.site && evento.site.startsWith('http')) {
-                // Redireciona para o site oficial como alternativa
-                btnBilheteira.href = evento.site;
-                btnBilheteira.innerText = `Bilhetes: ${evento.bilheteira} (Ver Site)`;
-                btnBilheteira.classList.remove('disabled', 'btn-secondary');
-                btnBilheteira.classList.add('btn-warning');
-                btnBilheteira.style.pointerEvents = 'auto';
-            } else {
-                // Desativa o botão se não houver link nenhum
-                btnBilheteira.href = "#";
-                btnBilheteira.innerText = `Bilhetes: ${evento.bilheteira}`;
-                btnBilheteira.classList.add('disabled', 'btn-secondary');
-                btnBilheteira.classList.remove('btn-warning');
-                btnBilheteira.style.pointerEvents = 'none';
-            } // se o evento tiver um link, o botao funciona normalmente. Se o bilhete for vendido à porta, o script altera o texto do botao para informar o utilizador e desativa o clique (pointerEvents = 'none') para evitar erros, e muda a cor para cinzento (btn-secondary)
-        }
-
-        // Abrir o Modal
-        const myModal = new bootstrap.Modal(document.getElementById('eventoModal'));
-        myModal.show();
-    };
-});
+    new bootstrap.Modal(modalEl).show();
+};
