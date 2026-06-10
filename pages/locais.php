@@ -41,6 +41,30 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <h1 class="text-center mb-4 text-warning">Explorar Locais</h1>
 
+    <?php if (isset($_GET['created'])): ?>
+        <div class="alert alert-success">
+            Local criado com sucesso.
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['updated'])): ?>
+        <div class="alert alert-success">
+            Local atualizado com sucesso.
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['deleted'])): ?>
+        <div class="alert alert-success">
+            Local eliminado com sucesso.
+        </div>
+    <?php endif; ?>
+
+    <div class="text-center mb-4">
+        <a href="locais-crud/criar.php" class="btn btn-warning">
+            + Criar Local
+        </a>
+    </div>
+
     <!-- LISTA -->
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
@@ -67,10 +91,27 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?= htmlspecialchars($local['morada']) ?>
                         </p>
 
-                        <a href="locais.php?id=<?= $local['id'] ?>"
-                            class="btn btn-dark mt-auto border-warning">
-                            Ver Local
-                        </a>
+                        <div class="mt-auto d-grid gap-2">
+
+                            <a href="locais.php?id=<?= $local['id'] ?>"
+                                class="btn btn-dark border-warning">
+                                Ver Local
+                            </a>
+
+                            <a href="locais-crud/editar.php?id=<?= $local['id'] ?>"
+                                class="btn btn-outline-warning">
+                                Editar
+                            </a>
+
+                            <button
+                                class="btn btn-outline-danger"
+                                data-bs-toggle="modal"
+                                data-bs-target="#deleteModal"
+                                onclick="setDeleteId(<?= $local['id'] ?>)">
+                                Eliminar
+                            </button>
+
+                        </div>
 
                     </div>
                 </div>
@@ -143,5 +184,41 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 <?php endif; ?>
+
+<!-- MODAL para apagar local -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-light border-secondary">
+
+            <div class="modal-header border-secondary">
+                <h5 class="text-warning">Confirmar eliminação</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                Tens a certeza que queres eliminar este local?
+                Esta ação não pode ser revertida.
+            </div>
+
+            <div class="modal-footer border-secondary">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+
+                <a id="confirmDeleteBtn" href="#" class="btn btn-danger">
+                    Eliminar
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function setDeleteId(id) {
+        document.getElementById('confirmDeleteBtn').href =
+            'locais-crud/eliminar.php?id=' + id;
+    }
+</script>
 
 <?php require_once '../includes/footer.php'; ?>
