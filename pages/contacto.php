@@ -17,58 +17,65 @@ require_once '../includes/nav.php';
     <?php endif; ?>
 
     <div class="row justify-content-center">
-        <div class="col-md-6 bg-secondary p-4 rounded shadow">
-            <h1 class="text-warning mb-3">Fala connosco</h1>
-            <p class="text-light">Tens alguma dúvida, sugestão ou queres colaborar connosco? Envia-nos uma mensagem.
-            </p>
-            <hr class="border-secondary mb-4">
+        <div class="col-lg-7">
 
-            <!--o novalidate serve para desativar aqueles balões cinzentos padrao. Usei a classe needs-validation do Bootstrap para depois, com o JavaScript, mostrar os avisos de erro personalizados com as cores do site-->
-            <form action="../mail.php" method="POST" id="form-contacto" class="needs-validation" novalidate>
-                <!-- Nome -->
-                <div class="mb-3">
-                    <label for="nome" class="form-label">O teu nome</label>
-                    <input type="text" class="form-control bg-dark text-white border-0" id="nome" name="nome" placeholder="nome"
-                        required>
+            <div class="card bg-secondary text-white shadow border-0">
+                <div class="card-body p-4">
+
+                    <h1 class="text-warning mb-3">Fala connosco</h1>
+                    <p class="text-light">Tens alguma dúvida, sugestão ou queres colaborar connosco? Envia-nos uma mensagem.</p>
+                    <hr class="border-secondary mb-4">
+
+                    <form action="../mail.php" method="POST" id="form-contacto" class="needs-validation" novalidate>
+
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">O teu nome</label>
+                            <input type="text" class="form-control bg-dark text-white border-0"
+                                id="nome" name="nome" placeholder="nome" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control bg-dark text-white border-0"
+                                id="email" name="email" placeholder="@email.com" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="assunto" class="form-label">Assunto</label>
+                            <select class="form-select bg-dark text-white border-0"
+                                id="assunto" name="assunto" required>
+                                <option value="" selected disabled>Sobre o que queres falar?</option>
+                                <option value="duvida">Dúvida Geral</option>
+                                <option value="parceria">Parcerias/Publicidade</option>
+                                <option value="erro">Reportar Erro no Site</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="mensagem" class="form-label">A tua mensagem</label>
+                            <textarea class="form-control bg-dark text-white border-0"
+                                id="mensagem" name="mensagem" rows="5"
+                                placeholder="Escreve aqui" required></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn"
+                            class="btn btn-warning w-100 fw-bold py-2 mt-2">
+                            ENVIAR MENSAGEM
+                        </button>
+
+                    </form>
+
+                    <div id="msg-sucesso" class="alert alert-warning mt-4 d-none" role="alert">
+                        <i class="bi bi-send-check-fill me-2"></i> Recebido! Respondemos-te assim que possível.
+                    </div>
+
                 </div>
-
-                <!-- Email -->
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control bg-dark text-white border-0" id="email" name="email"
-                        placeholder="@email.com" required>
-                </div>
-
-                <!-- Assunto -->
-                <div class="mb-3">
-                    <label for="assunto" class="form-label">Assunto</label>
-                    <select class="form-select bg-dark text-white border-0" id="assunto" name="assunto" required>
-                        <option value="" selected disabled>Sobre o que queres falar?</option>
-                        <option value="duvida">Dúvida Geral</option>
-                        <option value="parceria">Parcerias/Publicidade</option>
-                        <option value="erro">Reportar Erro no Site</option>
-                        <option value="outro">Outro</option>
-                    </select>
-                </div>
-
-                <!-- Mensagem -->
-                <div class="mb-3">
-                    <label for="mensagem" class="form-label">A tua mensagem</label>
-                    <textarea class="form-control bg-dark text-white border-0" id="mensagem" name="mensagem" rows="5"
-                        placeholder="Escreve aqui" required></textarea>
-                </div>
-
-                <button type="submit" id="submitBtn" class="btn btn-warning w-100 fw-bold py-2 mt-2">ENVIAR MENSAGEM</button>
-            </form>
-
-            <div id="msg-sucesso" class="alert alert-warning mt-4 d-none" role="alert">
-                <i class="bi bi-send-check-fill me-2"></i> Recebido! Respondemos-te assim que possível.
             </div>
+
         </div>
     </div>
+
 </main>
 
-
-
-<!--footer-->
-<?php require_once '../includes/footer.php'; ?>
+<?php require_once '../includes/footer.php'; ?>Sonnet 4.6 LowClaude is AI and can make mistakes. Plea
