@@ -23,6 +23,13 @@ header .animar-letras span:hover {
     /* Pequeno salto opcional para dar vida */
 }
 
+/* estilizacao de barra que contem user auth e switch de cor de tema */
+.topbar {
+    position: relative;
+    z-index: 1000;
+    background-color: var(--bg-body);
+}
+
 /* --- EFEITO COR AMARELA NOS CARDS (DARK MODE) --- */
 
 /* No Dark Mode, adicionamos o glow amarelo e borda */
@@ -75,8 +82,7 @@ body {
 /* O main e header também herdam as mesmas cores do body */
 main,
 header,
-footer,
-.navbar {
+footer{
     background-color: var(--bg-body) !important;
     color: var(--text-main) !important;
 }
@@ -104,15 +110,14 @@ footer {
     display: flex;
     /* Centraliza o conteúdo principal (a lista) */
     align-items: center;
+    justify-content: space-between;
 }
 
 .navbar-nav {
     display: flex;
     gap: 15px;
-    /* Espaçamento fixo entre links do centro */
-    margin: 0 auto;
-    /* Força a centralização total */
-    transition: all 0.3s ease;
+    margin: 0;
+    align-items: center;
 }
 
 
@@ -135,33 +140,6 @@ footer {
 
 /* hamburguer menu na vertical, layout responsivo para ecras grandes (desktop), mobile e tablet */
 
-/* desktop */
-
-@media (min-width: 992px) {
-    .navbar .container-fluid {
-        position: relative;
-        justify-content: center;
-    }
-
-    .navbar-nav {
-        flex-direction: row;
-        /* Horizontal no PC */
-    }
-
-    /* Posiciona o "Início" fixo à esquerda apenas em Desktop */
-    .navbar-nav .nav-item:first-child {
-        position: absolute;
-        left: 15px;
-        margin-right: 0;
-    }
-
-    /* Posiciona o "Switch" fixo à direita apenas em Desktop */
-    .navbar-nav .nav-item:last-child {
-        position: absolute;
-        right: 15px;
-        margin-left: 0;
-    }
-}
 
 /* --- LAYOUT PARA MOBILE E TABLET (Quando o menu colapsa) --- */
 @media (max-width: 991.98px) {
