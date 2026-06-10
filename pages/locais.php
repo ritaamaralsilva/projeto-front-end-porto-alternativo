@@ -1,4 +1,7 @@
 <?php
+
+require_once '../includes/auth.php';
+
 require_once '../includes/config.php';
 require_once '../db/Database.php';
 
@@ -59,11 +62,14 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     <?php endif; ?>
 
-    <div class="text-center mb-4">
-        <a href="locais-crud/criar.php" class="btn btn-warning">
-            + Criar Local
-        </a>
-    </div>
+    <?php if (isLoggedIn()): ?>
+        <div class="text-end mb-3">
+            <a href="<?= BASE_URL ?>/pages/locais-crud/criar.php"
+                class="btn btn-warning">
+                + Criar Local
+            </a>
+        </div>
+    <?php endif; ?>
 
     <!-- LISTA -->
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -98,18 +104,23 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 Ver Local
                             </a>
 
-                            <a href="locais-crud/editar.php?id=<?= $local['id'] ?>"
-                                class="btn btn-outline-warning">
-                                Editar
-                            </a>
+                            <?php if (isLoggedIn()): ?>
+                                <div class="d-flex gap-2 mt-3">
 
-                            <button
-                                class="btn btn-outline-danger"
-                                data-bs-toggle="modal"
-                                data-bs-target="#deleteModal"
-                                onclick="setDeleteId(<?= $local['id'] ?>)">
-                                Eliminar
-                            </button>
+                                    <a href="<?= BASE_URL ?>/pages/locais-crud/editar.php?id=<?= $local['id'] ?>"
+                                        class="btn btn-outline-warning btn-sm">
+                                        Editar
+                                    </a>
+
+                                    <button class="btn btn-outline-danger btn-sm"
+                                        onclick="setDeleteId(<?= $local['id'] ?>)"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal">
+                                        Eliminar
+                                    </button>
+
+                                </div>
+                            <?php endif; ?>
 
                         </div>
 

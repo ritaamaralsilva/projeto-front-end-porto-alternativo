@@ -2,6 +2,11 @@
 require_once '../../includes/config.php';
 require_once '../../db/Database.php';
 
+require_once '../../includes/config.php';
+require_once '../../includes/auth.php';
+
+requireLogin();
+
 session_start();
 
 /* =========================
