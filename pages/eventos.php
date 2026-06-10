@@ -70,65 +70,67 @@ require_once '../includes/nav.php';
     <h1 class="text-center mb-4 text-warning">Agenda de Eventos</h1>
 
     <?php if (isLoggedIn()): ?>
-        <a href="<?= BASE_URL ?>/pages/eventos-crud/criar.php" class="btn btn-warning mb-4">
-            Criar Evento
-        </a>
-    <?php endif; ?>
+        <div class="text-end mb-3">
+            <a href="<?= BASE_URL ?>/pages/eventos-crud/criar.php" class="btn btn-warning">
+                + Criar Evento
+            </a>
+        </div>
+        <?php endif; ?>
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
-        <?php foreach ($eventos as $evento): ?>
-            <div class="col">
-                <div class="card h-100 shadow">
+            <?php foreach ($eventos as $evento): ?>
+                <div class="col">
+                    <div class="card h-100 shadow">
 
-                    <img src="<?= htmlspecialchars($evento['imagem']) ?>" class="card-img-top"
-                        style="height:200px;object-fit:cover;">
+                        <img src="<?= htmlspecialchars($evento['imagem']) ?>" class="card-img-top"
+                            style="height:200px;object-fit:cover;">
 
-                    <div class="card-body d-flex flex-column">
+                        <div class="card-body d-flex flex-column">
 
-                        <div class="mb-2">
-                            <span class="badge"><?= htmlspecialchars($evento['data']) ?></span>
-                            <span class="badge border border-secondary"><?= htmlspecialchars($evento['hora']) ?></span>
-                        </div>
-
-                        <h5 class="card-title text-warning">
-                            <?= htmlspecialchars($evento['nome']) ?>
-                        </h5>
-
-                        <p class="mb-1">
-                            <i class="bi bi-geo-alt-fill text-warning"></i>
-                            <?= htmlspecialchars($evento['local_nome']) ?>
-                        </p>
-
-                        <p class="small text-muted">
-                            <?= implode(" | ", array_map('htmlspecialchars', $evento['categorias'])) ?>
-                        </p>
-
-                        <a href="eventos.php?id=<?= $evento['id'] ?>"
-                            class="btn btn-dark border-warning mt-auto">
-                            Ver Detalhes
-                        </a>
-
-                        <?php if (isLoggedIn()): ?>
-                            <div class="mt-2 d-flex gap-2">
-                                <a href="eventos-crud/editar.php?id=<?= $evento['id'] ?>"
-                                    class="btn btn-sm btn-primary">Editar</a>
-
-                                <button class="btn btn-sm btn-danger"
-                                    onclick="setDeleteId(<?= $evento['id'] ?>)"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal">
-                                    Eliminar
-                                </button>
+                            <div class="mb-2">
+                                <span class="badge"><?= htmlspecialchars($evento['data']) ?></span>
+                                <span class="badge border border-secondary"><?= htmlspecialchars($evento['hora']) ?></span>
                             </div>
-                        <?php endif; ?>
 
+                            <h5 class="card-title text-warning">
+                                <?= htmlspecialchars($evento['nome']) ?>
+                            </h5>
+
+                            <p class="mb-1">
+                                <i class="bi bi-geo-alt-fill text-warning"></i>
+                                <?= htmlspecialchars($evento['local_nome']) ?>
+                            </p>
+
+                            <p class="small text-muted">
+                                <?= implode(" | ", array_map('htmlspecialchars', $evento['categorias'])) ?>
+                            </p>
+
+                            <a href="eventos.php?id=<?= $evento['id'] ?>"
+                                class="btn btn-dark border-warning mt-auto">
+                                Ver Detalhes
+                            </a>
+
+                            <?php if (isLoggedIn()): ?>
+                                <div class="mt-2 d-flex gap-2">
+                                    <a href="eventos-crud/editar.php?id=<?= $evento['id'] ?>"
+                                        class="btn btn-sm btn-primary">Editar</a>
+
+                                    <button class="btn btn-sm btn-danger"
+                                        onclick="setDeleteId(<?= $evento['id'] ?>)"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal">
+                                        Eliminar
+                                    </button>
+                                </div>
+                            <?php endif; ?>
+
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
 
-    </div>
+        </div>
 </main>
 
 <!-- =========================

@@ -18,7 +18,6 @@ if (!$id) {
     exit;
 }
 
-// Busca evento
 $stmt = $pdo->prepare("SELECT * FROM eventos WHERE id = ?");
 $stmt->execute([$id]);
 $evento = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -28,15 +27,12 @@ if (!$evento) {
     exit;
 }
 
-// Busca locais
 $stmtLocais = $pdo->query("SELECT id, nome FROM locais ORDER BY nome");
 $locais = $stmtLocais->fetchAll(PDO::FETCH_ASSOC);
 
-// Busca todas as categorias
 $stmtCategorias = $pdo->query("SELECT id, nome FROM categorias ORDER BY nome");
 $categorias = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
 
-// Busca categorias já associadas ao evento
 $stmtCatsEvento = $pdo->prepare("SELECT categoria_id FROM evento_categoria WHERE evento_id = ?");
 $stmtCatsEvento->execute([$id]);
 $catsDoEvento = $stmtCatsEvento->fetchAll(PDO::FETCH_COLUMN);
@@ -45,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $pdo->beginTransaction();
 
-    // 1. Atualiza evento
     $stmt = $pdo->prepare("
         UPDATE eventos
         SET nome=?, data=?, hora=?, descricao=?, imagem=?, bilheteira=?, local_id=?
@@ -62,13 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id
     ]);
 
-    // 2. Remove categorias antigas
     $pdo->prepare("DELETE FROM evento_categoria WHERE evento_id = ?")->execute([$id]);
 
-    // 3. Categorias selecionadas
     $categoriasPost = $_POST['categorias'] ?? [];
 
-    // 4. Nova categoria (se existir)
     if (!empty($_POST['nova_categoria'])) {
         $stmtNova = $pdo->prepare("INSERT INTO categorias (nome) VALUES (?)");
         try {
@@ -81,7 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // 5. Insere novas categorias na pivot
     $stmtPivot = $pdo->prepare("INSERT INTO evento_categoria (evento_id, categoria_id) VALUES (?, ?)");
     foreach ($categoriasPost as $cat_id) {
         $stmtPivot->execute([$id, $cat_id]);
@@ -94,73 +85,114 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
+<?php include '../../includes/header.php'; ?>
+<?php include '../../includes/nav.php'; ?>
 
-<head>
-    <title>Editar Evento</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<main class="container my-5 flex-grow-1">
 
-<body class="bg-dark text-light">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
 
-    <div class="container py-5">
+            <div class="card bg-secondary text-white shadow border-0">
+                <div class="card-body p-4">
 
-        <h2 class="text-warning mb-4">Editar Evento</h2>
+                    <h2 class="text-warning mb-4">Editar Evento</h2>
 
-        <form method="POST" class="card bg-secondary p-4">
+                    <form method="POST">
 
-            <input class="form-control mb-2" name="nome"
-                placeholder="Nome"
-                value="<?= htmlspecialchars($evento['nome']) ?>" required>
+                        <div class="mb-3">
+                            <label class="form-label">Nome *</label>
+                            <input type="text" name="nome"
+                                class="form-control bg-dark text-white border-0"
+                                value="<?= htmlspecialchars($evento['nome']) ?>" required>
+                        </div>
 
-            <input type="date" class="form-control mb-2" name="data"
-                value="<?= htmlspecialchars($evento['data']) ?>">
+                        <div class="mb-3">
+                            <label class="form-label">Data</label>
+                            <input type="date" name="data"
+                                class="form-control bg-dark text-white border-0"
+                                value="<?= htmlspecialchars($evento['data']) ?>">
+                        </div>
 
-            <input type="time" class="form-control mb-2" name="hora"
-                value="<?= htmlspecialchars($evento['hora']) ?>">
+                        <div class="mb-3">
+                            <label class="form-label">Hora</label>
+                            <input type="time" name="hora"
+                                class="form-control bg-dark text-white border-0"
+                                value="<?= htmlspecialchars($evento['hora']) ?>">
+                        </div>
 
-            <textarea class="form-control mb-2" name="descricao"
-                placeholder="Descrição"><?= htmlspecialchars($evento['descricao']) ?></textarea>
+                        <div class="mb-3">
+                            <label class="form-label">Imagem (URL)</label>
+                            <input type="text" name="imagem"
+                                class="form-control bg-dark text-white border-0"
+                                value="<?= htmlspecialchars($evento['imagem']) ?>">
+                        </div>
 
-            <input class="form-control mb-2" name="imagem"
-                placeholder="URL imagem"
-                value="<?= htmlspecialchars($evento['imagem']) ?>">
+                        <div class="mb-3">
+                            <label class="form-label">Bilheteira (URL)</label>
+                            <input type="text" name="bilheteira"
+                                class="form-control bg-dark text-white border-0"
+                                value="<?= htmlspecialchars($evento['bilheteira']) ?>">
+                        </div>
 
-            <input class="form-control mb-2" name="bilheteira"
-                placeholder="Bilheteira"
-                value="<?= htmlspecialchars($evento['bilheteira']) ?>">
+                        <div class="mb-3">
+                            <label class="form-label">Local *</label>
+                            <select name="local_id"
+                                class="form-select bg-dark text-white border-0"
+                                required>
+                                <?php foreach ($locais as $l): ?>
+                                    <option value="<?= $l['id'] ?>"
+                                        <?= $l['id'] == $evento['local_id'] ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($l['nome']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
-            <select class="form-control mb-3" name="local_id">
-                <?php foreach ($locais as $l): ?>
-                    <option value="<?= $l['id'] ?>"
-                        <?= $l['id'] == $evento['local_id'] ? 'selected' : '' ?>>
-                        <?= htmlspecialchars($l['nome']) ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+                        <div class="mb-3">
+                            <label class="form-label">Descrição</label>
+                            <textarea name="descricao" rows="4"
+                                class="form-control bg-dark text-white border-0"><?= htmlspecialchars($evento['descricao']) ?></textarea>
+                        </div>
 
-            <h5 class="mt-2 mb-2">Categorias</h5>
+                        <div class="mb-3">
+                            <label class="form-label">Categorias</label>
+                            <div class="d-flex flex-wrap gap-3">
+                                <?php foreach ($categorias as $c): ?>
+                                    <label class="d-flex align-items-center gap-1">
+                                        <input type="checkbox" name="categorias[]"
+                                            value="<?= $c['id'] ?>"
+                                            <?= in_array($c['id'], $catsDoEvento) ? 'checked' : '' ?>>
+                                        <?= htmlspecialchars($c['nome']) ?>
+                                    </label>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
 
-            <?php foreach ($categorias as $c): ?>
-                <label class="d-block mb-1">
-                    <input type="checkbox" name="categorias[]" value="<?= $c['id'] ?>"
-                        <?= in_array($c['id'], $catsDoEvento) ? 'checked' : '' ?>>
-                    <?= htmlspecialchars($c['nome']) ?>
-                </label>
-            <?php endforeach; ?>
+                        <div class="mb-3">
+                            <label class="form-label">Nova Categoria (opcional)</label>
+                            <input type="text" name="nova_categoria"
+                                class="form-control bg-dark text-white border-0"
+                                placeholder="Ex: Jazz">
+                        </div>
 
-            <hr>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-warning fw-bold w-100">
+                                Atualizar Evento
+                            </button>
+                            <a href="../eventos.php" class="btn btn-outline-light w-100">
+                                Cancelar
+                            </a>
+                        </div>
 
-            <input class="form-control mb-3" name="nova_categoria"
-                placeholder="Nova categoria (opcional)">
+                    </form>
 
-            <button class="btn btn-warning">Atualizar</button>
+                </div>
+            </div>
 
-        </form>
-
+        </div>
     </div>
 
-</body>
+</main>
 
-</html>
+<?php include '../../includes/footer.php'; ?>

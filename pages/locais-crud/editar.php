@@ -1,5 +1,4 @@
 <?php
-
 require_once '../../includes/config.php';
 require_once '../../includes/auth.php';
 
@@ -32,11 +31,10 @@ if (!$local) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sql = "UPDATE locais SET
-        nome=?, morada=?, imagem=?, descricao=?, site=?, coordenadas=?, category_id=?
-        WHERE id=?";
-
-    $stmt = $pdo->prepare($sql);
+    $stmt = $pdo->prepare("
+        UPDATE locais SET nome=?, morada=?, imagem=?, descricao=?, site=?, coordenadas=?, category_id=?
+        WHERE id=?
+    ");
     $stmt->execute([
         $_POST['nome'],
         $_POST['morada'],
@@ -53,44 +51,93 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
+<?php require_once '../../includes/header.php'; ?>
+<?php require_once '../../includes/nav.php'; ?>
 
-<head>
-    <title>Editar Local</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+<main class="container my-5 flex-grow-1">
 
-<body class="bg-dark text-light">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
 
-    <div class="container py-5">
+            <div class="card bg-secondary text-white shadow border-0">
+                <div class="card-body p-4">
 
-        <h2 class="text-warning mb-4">Editar Local</h2>
+                    <h2 class="text-warning mb-4">Editar Local</h2>
 
-        <form method="POST" class="card bg-secondary p-4">
+                    <form method="POST">
 
-            <input class="form-control mb-2" name="nome" value="<?= htmlspecialchars($local['nome']) ?>">
-            <input class="form-control mb-2" name="morada" value="<?= htmlspecialchars($local['morada']) ?>">
-            <input class="form-control mb-2" name="imagem" value="<?= htmlspecialchars($local['imagem']) ?>">
-            <textarea class="form-control mb-2" name="descricao"><?= htmlspecialchars($local['descricao']) ?></textarea>
-            <input class="form-control mb-2" name="site" value="<?= htmlspecialchars($local['site']) ?>">
-            <input class="form-control mb-2" name="coordenadas" value="<?= htmlspecialchars($local['coordenadas']) ?>">
+                        <div class="mb-3">
+                            <label class="form-label">Nome *</label>
+                            <input type="text" name="nome"
+                                class="form-control bg-dark text-white border-0"
+                                value="<?= htmlspecialchars($local['nome']) ?>" required>
+                        </div>
 
-            <select name="category_id" class="form-control mb-3">
-                <?php foreach ($categorias as $c): ?>
-                    <option value="<?= $c['id'] ?>"
-                        <?= $c['id'] == $local['category_id'] ? 'selected' : '' ?>>
-                        <?= htmlspecialchars($c['nome']) ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+                        <div class="mb-3">
+                            <label class="form-label">Morada *</label>
+                            <input type="text" name="morada"
+                                class="form-control bg-dark text-white border-0"
+                                value="<?= htmlspecialchars($local['morada']) ?>" required>
+                        </div>
 
-            <button class="btn btn-warning">Atualizar</button>
+                        <div class="mb-3">
+                            <label class="form-label">Categoria *</label>
+                            <select name="category_id"
+                                class="form-select bg-dark text-white border-0"
+                                required>
+                                <?php foreach ($categorias as $c): ?>
+                                    <option value="<?= $c['id'] ?>"
+                                        <?= $c['id'] == $local['category_id'] ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($c['nome']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
-        </form>
+                        <div class="mb-3">
+                            <label class="form-label">Imagem (URL)</label>
+                            <input type="text" name="imagem"
+                                class="form-control bg-dark text-white border-0"
+                                value="<?= htmlspecialchars($local['imagem']) ?>">
+                        </div>
 
+                        <div class="mb-3">
+                            <label class="form-label">Website</label>
+                            <input type="text" name="site"
+                                class="form-control bg-dark text-white border-0"
+                                value="<?= htmlspecialchars($local['site']) ?>">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Google Maps Embed URL</label>
+                            <input type="text" name="coordenadas"
+                                class="form-control bg-dark text-white border-0"
+                                value="<?= htmlspecialchars($local['coordenadas']) ?>">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Descrição</label>
+                            <textarea name="descricao" rows="4"
+                                class="form-control bg-dark text-white border-0"><?= htmlspecialchars($local['descricao']) ?></textarea>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-warning fw-bold w-100">
+                                Atualizar Local
+                            </button>
+                            <a href="../locais.php" class="btn btn-outline-light w-100">
+                                Cancelar
+                            </a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
     </div>
 
-</body>
+</main>
 
-</html>
+<?php require_once '../../includes/footer.php'; ?>
