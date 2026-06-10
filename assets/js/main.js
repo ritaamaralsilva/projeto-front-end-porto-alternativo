@@ -1,41 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     // --- 1. LÓGICA DE DARK/LIGHT MODE (Prioridade Máxima) ---
-    const themeToggle = document.getElementById("theme-toggle");
-    const themeIcon = document.getElementById("theme-icon");
-    const htmlElement = document.documentElement;
 
-    // Aplica o tema guardado imediatamente ao carregar
-    const savedTheme = localStorage.getItem("theme") || "dark";
-    htmlElement.setAttribute("data-theme", savedTheme);
-    
-    if (themeIcon) {
-        if (savedTheme === "light") {
-            themeIcon.classList.replace("bi-moon-stars", "bi-sun-fill");
-        } else {
-            themeIcon.classList.replace("bi-sun-fill", "bi-moon-stars");
-        }
-    }
+const html = document.documentElement;
+const toggle = document.getElementById("theme-toggle");
+const icon = document.getElementById("theme-icon");
 
-    // Listener para o clique no switch
-    if (themeToggle) {
-        themeToggle.addEventListener("click", (e) => {
-            e.preventDefault();
-            const currentTheme = htmlElement.getAttribute("data-theme");
-            const newTheme = currentTheme === "dark" ? "light" : "dark";
-            
-            htmlElement.setAttribute("data-theme", newTheme);
-            localStorage.setItem("theme", newTheme);
-            
-            if (themeIcon) {
-                if (newTheme === "light") {
-                    themeIcon.classList.replace("bi-moon-stars", "bi-sun-fill");
-                } else {
-                    themeIcon.classList.replace("bi-sun-fill", "bi-moon-stars");
-                }
-            }
-        });
-    }
+function applyTheme(theme) {
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+
+    if (!icon) return;
+
+    icon.classList.remove("bi-moon-stars", "bi-sun-fill");
+    icon.classList.add(theme === "light" ? "bi-sun-fill" : "bi-moon-stars");
+}
+
+// init
+const saved = localStorage.getItem("theme") || "dark";
+applyTheme(saved);
+
+// click
+if (toggle) {
+    toggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        const current = html.getAttribute("data-theme");
+        const next = current === "dark" ? "light" : "dark";
+        applyTheme(next);
+    });
+}
 
     // --- 2. ANIMAÇÃO DAS LETRAS ---
     const titulo = document.querySelector(".animar-letras");
