@@ -36,11 +36,6 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link <?= ($currentPage ?? '') === 'submeter' ? 'active' : '' ?>"
-                            href="<?= BASE_URL ?>/pages/submeter-evento.php">Submeter Evento</a>
-                    </li>
-
-                    <li class="nav-item">
                         <a class="nav-link <?= ($currentPage ?? '') === 'sobre' ? 'active' : '' ?>"
                             href="<?= BASE_URL ?>/pages/sobre.php">Sobre</a>
                     </li>
