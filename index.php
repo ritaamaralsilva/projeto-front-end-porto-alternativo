@@ -1,5 +1,35 @@
 <?php
 require_once 'includes/config.php';
+require_once 'db/Database.php';
+
+// Busca eventos futuros primeiro (até 5), se não houver busca os mais recentes passados
+$hoje = date('Y-m-d');
+
+$stmt = $pdo->prepare("
+    SELECT e.*, l.nome AS local_nome
+    FROM eventos e
+    LEFT JOIN locais l ON l.id = e.local_id
+    WHERE e.data >= ?
+    ORDER BY e.data ASC
+    LIMIT 5
+");
+$stmt->execute([$hoje]);
+$eventosCarrossel = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Se não houver eventos futuros, vai buscar os mais recentes passados
+if (empty($eventosCarrossel)) {
+    $stmt = $pdo->prepare("
+        SELECT e.*, l.nome AS local_nome
+        FROM eventos e
+        LEFT JOIN locais l ON l.id = e.local_id
+        WHERE e.data < ?
+        ORDER BY e.data DESC
+        LIMIT 5
+    ");
+    $stmt->execute([$hoje]);
+    $eventosCarrossel = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 $pageTitle = 'Início | Porto Alternativo';
 $currentPage = 'inicio';
 require_once 'includes/header.php';
@@ -13,44 +43,35 @@ require_once 'includes/nav.php';
     <div id="carouselExampleCaptions" class="carousel slide mx-auto shadow-lg" data-bs-ride="carousel"
         style="max-width: 900px;">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
+            <?php foreach ($eventosCarrossel as $i => $ev): ?>
+                <button type="button"
+                    data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide-to="<?= $i ?>"
+                    <?= $i === 0 ? 'class="active" aria-current="true"' : '' ?>
+                    aria-label="Slide <?= $i + 1 ?>">
+                </button>
+            <?php endforeach; ?>
         </div>
+
         <div class="carousel-inner rounded">
-            <div class="carousel-item active">
-                <div class="carousel-img-container">
-                    <img src="../assets/images/destaques-semana-planob.avif" class="d-block w-100"
-                        alt="Travo (Concerto) Plano B ">
+            <?php foreach ($eventosCarrossel as $i => $ev): ?>
+                <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>">
+                    <div class="carousel-img-container">
+                        <img src="<?= BASE_URL ?>/<?= htmlspecialchars($ev['imagem']) ?>"
+                            class="d-block w-100"
+                            alt="<?= htmlspecialchars($ev['nome']) ?>"
+                            style="height:450px; object-fit:cover;">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block bg-opacity-75 rounded">
+                        <h5><?= htmlspecialchars($ev['nome']) ?></h5>
+                        <p>
+                            <?= htmlspecialchars($ev['local_nome']) ?> —
+                            <?= date('d/m/Y', strtotime($ev['data'])) ?> |
+                            <?= substr($ev['hora'], 0, 5) ?>
+                        </p>
+                    </div>
                 </div>
-                <div class="carousel-caption d-none d-md-block bg-opacity-75 rounded">
-                    <h5>TRAVO (Concerto)</h5>
-                    <p>Plano B - 30/04/2026 | 22:30</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="carousel-img-container">
-                    <img src="../assets/images/destaques-semana-casadamusica.webp" class="d-block w-100"
-                        alt="Rival Consoles Casa da Música">
-                </div>
-                <div class="carousel-caption d-none d-md-block bg-opacity-75 rounded">
-                    <h5>Rival Consoles (Concerto) </h5>
-                    <p>Casa da Música - 01/05/2026 | 21:00</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="carousel-img-container">
-                    <img src="../assets/images/destaques-semana-sonoscopia.png" class="d-block w-100"
-                        alt="Microvolumes Sonoscopia">
-                </div>
-                <div class="carousel-caption d-none d-md-block bg-opacity-75 rounded">
-                    <h5>Microvolumes 4.82 | Abattoir & Borghi | Nicoleta Chatzopoulou</h5>
-                    <p>Sonoscopia - 02/05/2026 | 18:30</p>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
             data-bs-slide="prev">
