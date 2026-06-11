@@ -79,7 +79,7 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="col">
                 <div class="card h-100 bg-secondary text-white shadow border-0">
 
-                    <img src="<?= htmlspecialchars($local['imagem']) ?>"
+                    <img src="<?= BASE_URL ?>/<?= htmlspecialchars($local['imagem']) ?>"
                         class="card-img-top"
                         style="height:200px; object-fit:cover;">
 
@@ -158,7 +158,7 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="modal-body row">
 
                     <div class="col-md-6">
-                        <img src="<?= htmlspecialchars($localSelecionado['imagem']) ?>"
+                        <img src="<?= BASE_URL ?>/<?= htmlspecialchars($localSelecionado['imagem']) ?>"
                             class="img-fluid rounded mb-3">
 
                         <p><strong>Categoria:</strong>

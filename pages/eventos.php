@@ -75,62 +75,62 @@ require_once '../includes/nav.php';
                 + Criar Evento
             </a>
         </div>
-        <?php endif; ?>
+    <?php endif; ?>
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
-            <?php foreach ($eventos as $evento): ?>
-                <div class="col">
-                    <div class="card h-100 shadow">
+        <?php foreach ($eventos as $evento): ?>
+            <div class="col">
+                <div class="card h-100 shadow">
 
-                        <img src="<?= htmlspecialchars($evento['imagem']) ?>" class="card-img-top"
-                            style="height:200px;object-fit:cover;">
+                    <img src="<?= BASE_URL ?>/<?= htmlspecialchars($evento['imagem']) ?>" class="card-img-top"
+                        style="height:200px;object-fit:cover;">
 
-                        <div class="card-body d-flex flex-column">
+                    <div class="card-body d-flex flex-column">
 
-                            <div class="mb-2">
-                                <span class="badge"><?= htmlspecialchars($evento['data']) ?></span>
-                                <span class="badge border border-secondary"><?= htmlspecialchars($evento['hora']) ?></span>
-                            </div>
-
-                            <h5 class="card-title text-warning">
-                                <?= htmlspecialchars($evento['nome']) ?>
-                            </h5>
-
-                            <p class="mb-1">
-                                <i class="bi bi-geo-alt-fill text-warning"></i>
-                                <?= htmlspecialchars($evento['local_nome']) ?>
-                            </p>
-
-                            <p class="small text-muted">
-                                <?= implode(" | ", array_map('htmlspecialchars', $evento['categorias'])) ?>
-                            </p>
-
-                            <a href="eventos.php?id=<?= $evento['id'] ?>"
-                                class="btn btn-dark border-warning mt-auto">
-                                Ver Detalhes
-                            </a>
-
-                            <?php if (isLoggedIn()): ?>
-                                <div class="mt-2 d-flex gap-2">
-                                    <a href="eventos-crud/editar.php?id=<?= $evento['id'] ?>"
-                                        class="btn btn-sm btn-primary">Editar</a>
-
-                                    <button class="btn btn-sm btn-danger"
-                                        onclick="setDeleteId(<?= $evento['id'] ?>)"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal">
-                                        Eliminar
-                                    </button>
-                                </div>
-                            <?php endif; ?>
-
+                        <div class="mb-2">
+                            <span class="badge"><?= htmlspecialchars($evento['data']) ?></span>
+                            <span class="badge border border-secondary"><?= htmlspecialchars($evento['hora']) ?></span>
                         </div>
+
+                        <h5 class="card-title text-warning">
+                            <?= htmlspecialchars($evento['nome']) ?>
+                        </h5>
+
+                        <p class="mb-1">
+                            <i class="bi bi-geo-alt-fill text-warning"></i>
+                            <?= htmlspecialchars($evento['local_nome']) ?>
+                        </p>
+
+                        <p class="small text-muted">
+                            <?= implode(" | ", array_map('htmlspecialchars', $evento['categorias'])) ?>
+                        </p>
+
+                        <a href="eventos.php?id=<?= $evento['id'] ?>"
+                            class="btn btn-dark border-warning mt-auto">
+                            Ver Detalhes
+                        </a>
+
+                        <?php if (isLoggedIn()): ?>
+                            <div class="mt-2 d-flex gap-2">
+                                <a href="eventos-crud/editar.php?id=<?= $evento['id'] ?>"
+                                    class="btn btn-sm btn-primary">Editar</a>
+
+                                <button class="btn btn-sm btn-danger"
+                                    onclick="setDeleteId(<?= $evento['id'] ?>)"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                    Eliminar
+                                </button>
+                            </div>
+                        <?php endif; ?>
+
                     </div>
                 </div>
-            <?php endforeach; ?>
+            </div>
+        <?php endforeach; ?>
 
-        </div>
+    </div>
 </main>
 
 <!-- =========================
@@ -152,7 +152,7 @@ require_once '../includes/nav.php';
                 <div class="modal-body row">
 
                     <div class="col-md-6">
-                        <img src="<?= htmlspecialchars($eventoSelecionado['imagem']) ?>"
+                        <img src="<?= BASE_URL ?>/<?= htmlspecialchars($eventoSelecionado['imagem']) ?>"
                             class="img-fluid rounded mb-3">
 
                         <p><strong>Data:</strong>
