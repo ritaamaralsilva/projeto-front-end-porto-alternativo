@@ -45,10 +45,10 @@ try {
     ';
 
     $mail->send();
-    header('Location: /projeto-front-end-porto-alternativo/pages/contacto.php?sent=1');
+    header('Location: ' . $_SERVER['HTTP_REFERER'] . '?sent=1');
     exit;
 } catch (Exception $e) {
     // Em caso de erro, redireciona para a página de contacto com um parâmetro de erro
-    header('Location: /projeto-front-end-porto-alternativo/pages/contacto.php?contact_error=1');
+    header('Location: ' . $_SERVER['HTTP_REFERER'] . '?contact_error=1');
     exit;
 }

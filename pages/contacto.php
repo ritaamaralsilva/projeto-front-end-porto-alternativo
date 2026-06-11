@@ -26,7 +26,7 @@ require_once '../includes/nav.php';
                     <p class="text-light">Tens alguma dúvida, sugestão ou queres colaborar connosco? Envia-nos uma mensagem.</p>
                     <hr class="border-secondary mb-4">
 
-                    <form action="../mail.php" method="POST" id="form-contacto" class="needs-validation" novalidate>
+                    <form action="<?= BASE_URL ?>/mail.php" method="POST" id="form-contacto" class="needs-validation" novalidate>
 
                         <div class="mb-3">
                             <label for="nome" class="form-label">O teu nome</label>
