@@ -1,0 +1,21 @@
+RewriteEngine On
+RewriteBase /projeto-front-end-porto-alternativo/
+
+# Remove extensão .php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L,QSA]
+
+# index.php -> /inicio
+RewriteRule ^inicio$ index.php [L,QSA]
+
+# Páginas em /pages/
+RewriteRule ^locais$ pages/locais.php [L,QSA]
+RewriteRule ^agenda$ pages/eventos.php [L,QSA]
+RewriteRule ^sobre$ pages/sobre.php [L,QSA]
+RewriteRule ^contacto$ pages/contacto.php [L,QSA]
+RewriteRule ^criar-conta$ pages/registo.php [L,QSA]
+RewriteRule ^login$ pages/login.php [L,QSA]
+
+# Página de erro 404
+ErrorDocument 404 /projeto-front-end-porto-alternativo/pages/404.php

@@ -1,6 +1,6 @@
 <?php include __DIR__ . '/topbar.php'; ?>
 
-<header class="text-center sticky-top border-bottom border-secondary">
+<header class="text-center sticky-top">
 
     <a href="<?= BASE_URL ?>/index.php" class="text-decoration-none">
         <h2 class="pt-3 fw-bold animar-letras">PORTO ALTERNATIVO</h2>
@@ -22,27 +22,27 @@
 
                     <li class="nav-item">
                         <a class="nav-link <?= ($currentPage ?? '') === 'inicio' ? 'active' : '' ?>"
-                            href="<?= BASE_URL ?>/index.php">Início</a>
+                            href="<?= BASE_URL ?>/">Início</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link <?= ($currentPage ?? '') === 'locais' ? 'active' : '' ?>"
-                            href="<?= BASE_URL ?>/pages/locais.php">Locais</a>
+                            href="<?= BASE_URL ?>/locais">Locais</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link <?= ($currentPage ?? '') === 'eventos' ? 'active' : '' ?>"
-                            href="<?= BASE_URL ?>/pages/eventos.php">Agenda</a>
+                            href="<?= BASE_URL ?>/agenda">Agenda</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link <?= ($currentPage ?? '') === 'sobre' ? 'active' : '' ?>"
-                            href="<?= BASE_URL ?>/pages/sobre.php">Sobre</a>
+                            href="<?= BASE_URL ?>/sobre">Sobre</a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link <?= ($currentPage ?? '') === 'contacto' ? 'active' : '' ?>"
-                            href="<?= BASE_URL ?>/pages/contacto.php">Contacto</a>
+                            href="<?= BASE_URL ?>/contacto">Contacto</a>
                     </li>
 
                 </ul>

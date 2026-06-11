@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 
-<div class="topbar d-flex justify-content-end align-items-center gap-3 px-3 py-2 border-bottom border-secondary">
+<div class="topbar d-flex justify-content-end align-items-center gap-3 px-3 py-2">
 
     <!-- SWITCH TEMA -->
     <button id="theme-toggle" class="btn btn-link nav-link p-0">

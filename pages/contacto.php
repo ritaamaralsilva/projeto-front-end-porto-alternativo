@@ -78,4 +78,4 @@ require_once '../includes/nav.php';
 
 </main>
 
-<?php require_once '../includes/footer.php'; ?>Sonnet 4.6 LowClaude is AI and can make mistakes. Plea
+<?php require_once '../includes/footer.php'; ?>
