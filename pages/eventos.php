@@ -106,14 +106,14 @@ require_once '../includes/nav.php';
                             <?= implode(" | ", array_map('htmlspecialchars', $evento['categorias'])) ?>
                         </p>
 
-                        <a href="eventos.php?id=<?= $evento['id'] ?>"
+                        <a href="<?= BASE_URL ?>/agenda?id=<?= $evento['id'] ?>"
                             class="btn btn-dark border-warning mt-auto">
                             Ver Detalhes
                         </a>
 
                         <?php if (isLoggedIn()): ?>
                             <div class="mt-2 d-flex gap-2">
-                                <a href="eventos-crud/editar.php?id=<?= $evento['id'] ?>"
+                                <a href="<?= BASE_URL ?>/pages/eventos-crud/editar?id=<?= $evento['id'] ?>"
                                     class="btn btn-sm btn-primary">Editar</a>
 
                                 <button class="btn btn-sm btn-danger"
@@ -146,7 +146,7 @@ require_once '../includes/nav.php';
                     <h5 class="text-warning">
                         <?= htmlspecialchars($eventoSelecionado['nome']) ?>
                     </h5>
-                    <a href="eventos.php" class="btn-close btn-close-white"></a>
+                    <a href="<?= BASE_URL ?>/agenda" class="btn-close btn-close-white"></a>
                 </div>
 
                 <div class="modal-body row">
@@ -229,7 +229,7 @@ require_once '../includes/nav.php';
 <script>
     function setDeleteId(id) {
         document.getElementById('confirmDeleteBtn').href =
-            'eventos-crud/eliminar.php?id=' + id;
+            '<?= BASE_URL ?>/pages/eventos-crud/eliminar?id=' + id;
     }
 </script>
 
