@@ -89,7 +89,7 @@ require_once '../includes/nav.php';
                     <div class="card-body d-flex flex-column">
 
                         <div class="mb-2">
-                            <span class="badge"><?= htmlspecialchars($evento['data']) ?></span>
+                            <span class="badge border"><?= htmlspecialchars($evento['data']) ?></span>
                             <span class="badge border border-secondary"><?= htmlspecialchars($evento['hora']) ?></span>
                         </div>
 
@@ -107,7 +107,7 @@ require_once '../includes/nav.php';
                         </p>
 
                         <a href="<?= BASE_URL ?>/agenda?id=<?= $evento['id'] ?>"
-                            class="btn btn-dark border-warning mt-auto">
+                            class="btn border-warning mt-auto">
                             Ver Detalhes
                         </a>
 
@@ -140,13 +140,13 @@ require_once '../includes/nav.php';
     <div class="modal show d-block" tabindex="-1" style="background: rgba(0,0,0,0.7);">
 
         <div class="modal-dialog modal-lg">
-            <div class="modal-content bg-dark text-light border-secondary">
+            <div class="modal-content border-secondary">
 
                 <div class="modal-header border-secondary">
                     <h5 class="text-warning">
                         <?= htmlspecialchars($eventoSelecionado['nome']) ?>
                     </h5>
-                    <a href="<?= BASE_URL ?>/agenda" class="btn-close btn-close-white"></a>
+                    <a href="<?= BASE_URL ?>/agenda" class="btn-close"></a>
                 </div>
 
                 <div class="modal-body row">
@@ -204,21 +204,21 @@ require_once '../includes/nav.php';
 ========================= -->
 <div class="modal fade" id="deleteModal" tabindex="-1">
     <div class="modal-dialog">
-        <div class="modal-content bg-dark text-light border-secondary">
+        <div class="modal-content border-secondary">
 
             <div class="modal-header border-secondary">
                 <h5 class="text-warning">Confirmar eliminação</h5>
-                <button type="button" class="btn-close btn-close-white"
+                <button type="button" class="btn-close"
                     data-bs-dismiss="modal"></button>
             </div>
 
             <div class="modal-body">
-                Tens a certeza que queres eliminar este evento?
-                Esta ação não pode ser revertida.
+                <p>Tens a certeza que queres eliminar este evento?
+                Esta ação não pode ser revertida.</p>
             </div>
 
             <div class="modal-footer border-secondary">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn" data-bs-dismiss="modal">Cancelar</button>
                 <a id="confirmDeleteBtn" href="#" class="btn btn-danger">Eliminar</a>
             </div>
 

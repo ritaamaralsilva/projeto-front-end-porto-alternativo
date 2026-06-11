@@ -29,7 +29,7 @@ $categorias = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
     <div class="row justify-content-center">
         <div class="col-lg-7">
 
-            <div class="card bg-secondary text-white shadow border-0">
+            <div class="card shadow">
                 <div class="card-body p-4">
 
                     <h2 class="text-warning mb-4">Criar Evento</h2>
@@ -39,38 +39,38 @@ $categorias = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
                         <div class="mb-3">
                             <label class="form-label">Nome *</label>
                             <input type="text" name="nome"
-                                class="form-control bg-dark text-white border-0"
+                                class="form-control "
                                 required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Data</label>
                             <input type="date" name="data"
-                                class="form-control bg-dark text-white border-0">
+                                class="form-control">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Hora</label>
                             <input type="time" name="hora"
-                                class="form-control bg-dark text-white border-0">
+                                class="form-control">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Imagem (URL)</label>
                             <input type="text" name="imagem"
-                                class="form-control bg-dark text-white border-0">
+                                class="form-control">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Bilheteira (URL)</label>
                             <input type="text" name="bilheteira"
-                                class="form-control bg-dark text-white border-0">
+                                class="form-control">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Local *</label>
                             <select name="local_id"
-                                class="form-select bg-dark text-white border-0"
+                                class="form-select"
                                 required>
                                 <option value="">Seleciona um local</option>
                                 <?php foreach ($locais as $l): ?>
@@ -84,7 +84,7 @@ $categorias = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
                         <div class="mb-3">
                             <label class="form-label">Descrição</label>
                             <textarea name="descricao" rows="4"
-                                class="form-control bg-dark text-white border-0"></textarea>
+                                class="form-control"></textarea>
                         </div>
 
                         <div class="mb-3">
@@ -103,17 +103,17 @@ $categorias = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
                         <div class="mb-3">
                             <label class="form-label">Nova Categoria (opcional)</label>
                             <input type="text" name="nova_categoria"
-                                class="form-control bg-dark text-white border-0"
+                                class="form-control"
                                 placeholder="Ex: Jazz">
                         </div>
 
                         <div class="d-flex gap-2">
                             <button type="submit"
-                                class="btn btn-warning fw-bold w-100">
+                                class="btn btn-outline-light fw-bold w-100">
                                 Criar Evento
                             </button>
 
-                            <a href="../eventos.php"
+                            <a href="<?= BASE_URL ?>/agenda"
                                 class="btn btn-outline-light w-100">
                                 Cancelar
                             </a>

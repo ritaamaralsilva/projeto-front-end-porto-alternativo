@@ -14,7 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <!-- AUTH -->
     <?php if (isset($_SESSION['user_id'])): ?>
 
-        <span class="small text-muted">
+        <span class="small">
             Olá, <?= htmlspecialchars($_SESSION['user_nome']) ?>
         </span>
 

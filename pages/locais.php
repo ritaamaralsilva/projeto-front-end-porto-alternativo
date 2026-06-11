@@ -77,7 +77,7 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($locais as $local): ?>
 
             <div class="col">
-                <div class="card h-100 bg-secondary text-white shadow border-0">
+                <div class="card h-100 shadow">
 
                     <img src="<?= BASE_URL ?>/<?= htmlspecialchars($local['imagem']) ?>"
                         class="card-img-top"
@@ -93,14 +93,14 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?= htmlspecialchars($local['categoria_nome']) ?>
                         </p>
 
-                        <p class="small text-light">
+                        <p class="small">
                             <?= htmlspecialchars($local['morada']) ?>
                         </p>
 
                         <div class="mt-auto d-grid gap-2">
 
-                            <a href="locais?id=<?= $local['id'] ?>"
-                                class="btn btn-dark border-warning">
+                            <a href="<?= BASE_URL ?>/locais?id=<?= $local['id'] ?>"
+                                class="btn border-warning">
                                 Ver Local
                             </a>
 
@@ -145,14 +145,14 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="modal show d-block" tabindex="-1" style="background: rgba(0,0,0,0.7);">
 
         <div class="modal-dialog modal-lg">
-            <div class="modal-content bg-dark text-light border-secondary">
+            <div class="modal-content border-secondary">
 
                 <div class="modal-header border-secondary">
                     <h5 class="text-warning">
                         <?= htmlspecialchars($localSelecionado['nome']) ?>
                     </h5>
 
-                    <a href="locais" class="btn-close btn-close-white"></a>
+                    <a href="<?= BASE_URL ?>/locais" class="btn-close"></a>
                 </div>
 
                 <div class="modal-body row">
@@ -199,20 +199,20 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <!-- MODAL para apagar local -->
 <div class="modal fade" id="deleteModal" tabindex="-1">
     <div class="modal-dialog">
-        <div class="modal-content bg-dark text-light border-secondary">
+        <div class="modal-content border-secondary">
 
             <div class="modal-header border-secondary">
                 <h5 class="text-warning">Confirmar eliminação</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
             <div class="modal-body">
-                Tens a certeza que queres eliminar este local?
-                Esta ação não pode ser revertida.
+                <p>Tens a certeza que queres eliminar este local?
+                Esta ação não pode ser revertida.</p>
             </div>
 
             <div class="modal-footer border-secondary">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">
+                <button class="btn" data-bs-dismiss="modal">
                     Cancelar
                 </button>
 
@@ -228,7 +228,7 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <script>
     function setDeleteId(id) {
         document.getElementById('confirmDeleteBtn').href =
-            'locais-crud/eliminar?id=' + id;
+            '<?= BASE_URL ?>/pages/locais-crud/eliminar?id=' + id;
     }
 </script>
 

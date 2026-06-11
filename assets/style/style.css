@@ -166,11 +166,6 @@ header .animar-letras span:hover {
     color: var(--text-main) !important;
 }
 
-.card .small,
-.card .text-muted {
-    color: var(--text-muted) !important;
-}
-
 /* Botão dentro do card */
 .card .btn {
     background-color: transparent !important;
@@ -259,8 +254,15 @@ header .animar-letras span:hover {
     color: var(--text-main) !important;
 }
 
-.form-control::placeholder {
+.form-control::placeholder,
+textarea.form-control::placeholder {
     color: var(--text-muted) !important;
+    opacity: 1;
+}
+
+.form-select option {
+    background-color: var(--bg-surface);
+    color: var(--text-main);
 }
 
 .form-label {
@@ -268,6 +270,10 @@ header .animar-letras span:hover {
     font-size: 0.85rem;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+}
+
+.form-check-label {
+    color: var(--text-main) !important;
 }
 
 /* --- MODAL --- */
@@ -429,4 +435,89 @@ footer .col-md-6 {
         position: static !important;
         margin: 0 !important;
     }
+
+/* --- OVERRIDES FINAIS DE TEMA --- */
+[data-theme="dark"] .card .small,
+[data-theme="dark"] .card .text-muted,
+[data-theme="dark"] .card p.small,
+[data-theme="dark"] .card p.text-muted,
+[data-theme="dark"] .card span.small,
+[data-theme="dark"] .card span.text-muted,
+[data-theme="dark"] .text-muted {
+    color: var(--accent) !important;
+}
+
+[data-theme="light"] .card .small,
+[data-theme="light"] .card .text-muted,
+[data-theme="light"] .card p.small,
+[data-theme="light"] .card p.text-muted,
+[data-theme="light"] .card span.small,
+[data-theme="light"] .card span.text-muted,
+[data-theme="light"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="light"] p,
+[data-theme="light"] span,
+[data-theme="light"] li,
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6,
+[data-theme="light"] a,
+[data-theme="light"] strong,
+[data-theme="light"] label {
+    color: var(--text-main) !important;
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] li,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] a,
+[data-theme="dark"] strong,
+[data-theme="dark"] label {
+    color: var(--text-main) !important;
+}
+
+/* --- FORCE FORM COLORS --- */
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select,
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] .form-select {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-theme="light"] input,
+html[data-theme="light"] textarea,
+html[data-theme="light"] select,
+html[data-theme="light"] .form-control,
+html[data-theme="light"] .form-select {
+    background-color: #e8e8e8 !important;
+    color: #111111 !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text-main) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* --- MODAL BODY --- */
+.modal-body {
+    color: var(--text-main) !important;
+    background-color: var(--bg-card) !important;
+}
 }

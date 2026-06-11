@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="row justify-content-center">
         <div class="col-lg-7">
 
-            <div class="card bg-secondary text-white shadow border-0">
+            <div class="card shadow">
                 <div class="card-body p-4">
 
                     <h2 class="text-warning mb-4">Criar Local</h2>
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="mb-3">
                             <label class="form-label">Nome *</label>
                             <input type="text" name="nome"
-                                class="form-control bg-dark text-white border-0"
+                                class="form-control"
                                 required>
                         </div>
 
@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="mb-3">
                             <label class="form-label">Morada *</label>
                             <input type="text" name="morada"
-                                class="form-control bg-dark text-white border-0"
+                                class="form-control"
                                 required>
                         </div>
 
@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="mb-3">
                             <label class="form-label">Categoria *</label>
                             <select name="category_id"
-                                class="form-select bg-dark text-white border-0"
+                                class="form-select"
                                 required>
                                 <option value="">Seleciona uma categoria</option>
                                 <?php foreach ($categorias as $cat): ?>
@@ -135,28 +135,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="mb-3">
                             <label class="form-label">Imagem (URL)</label>
                             <input type="text" name="imagem"
-                                class="form-control bg-dark text-white border-0">
+                                class="form-control">
                         </div>
 
                         <!-- Site -->
                         <div class="mb-3">
                             <label class="form-label">Website</label>
                             <input type="text" name="site"
-                                class="form-control bg-dark text-white border-0">
+                                class="form-control">
                         </div>
 
                         <!-- Coordenadas -->
                         <div class="mb-3">
                             <label class="form-label">Google Maps Embed URL</label>
                             <input type="text" name="coordenadas"
-                                class="form-control bg-dark text-white border-0">
+                                class="form-control">
                         </div>
 
                         <!-- Descrição -->
                         <div class="mb-3">
                             <label class="form-label">Descrição</label>
                             <textarea name="descricao" rows="4"
-                                class="form-control bg-dark text-white border-0"></textarea>
+                                class="form-control"></textarea>
                         </div>
 
                         <!-- Botões -->
@@ -166,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 Criar Local
                             </button>
 
-                            <a href="../locais.php"
+                            <a href="<?= BASE_URL ?>/locais"
                                 class="btn btn-outline-light w-100">
                                 Cancelar
                             </a>

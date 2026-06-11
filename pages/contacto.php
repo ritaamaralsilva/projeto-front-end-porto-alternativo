@@ -19,30 +19,30 @@ require_once '../includes/nav.php';
     <div class="row justify-content-center">
         <div class="col-lg-7">
 
-            <div class="card bg-secondary text-white shadow border-0">
+            <div class="card shadow">
                 <div class="card-body p-4">
 
                     <h1 class="text-warning mb-3">Fala connosco</h1>
-                    <p class="text-light">Tens alguma dúvida, sugestão ou queres colaborar connosco? Envia-nos uma mensagem.</p>
+                    <p class="">Tens alguma dúvida, sugestão ou queres colaborar connosco? Envia-nos uma mensagem.</p>
                     <hr class="border-secondary mb-4">
 
                     <form action="<?= BASE_URL ?>/mail.php" method="POST" id="form-contacto" class="needs-validation" novalidate>
 
                         <div class="mb-3">
                             <label for="nome" class="form-label">O teu nome</label>
-                            <input type="text" class="form-control bg-dark text-white border-0"
+                            <input type="text" class="form-control"
                                 id="nome" name="nome" placeholder="nome" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control bg-dark text-white border-0"
+                            <input type="email" class="form-control"
                                 id="email" name="email" placeholder="@email.com" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="assunto" class="form-label">Assunto</label>
-                            <select class="form-select bg-dark text-white border-0"
+                            <select class="form-select"
                                 id="assunto" name="assunto" required>
                                 <option value="" selected disabled>Sobre o que queres falar?</option>
                                 <option value="duvida">Dúvida Geral</option>
@@ -54,7 +54,7 @@ require_once '../includes/nav.php';
 
                         <div class="mb-3">
                             <label for="mensagem" class="form-label">A tua mensagem</label>
-                            <textarea class="form-control bg-dark text-white border-0"
+                            <textarea class="form-control"
                                 id="mensagem" name="mensagem" rows="5"
                                 placeholder="Escreve aqui" required></textarea>
                         </div>

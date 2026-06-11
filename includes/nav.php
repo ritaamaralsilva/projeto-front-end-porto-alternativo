@@ -15,10 +15,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
 
-                <!-- LEFT MENU -->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <ul class="navbar-nav mb-2 mb-lg-0">
 
                     <li class="nav-item">
                         <a class="nav-link <?= ($currentPage ?? '') === 'inicio' ? 'active' : '' ?>"
