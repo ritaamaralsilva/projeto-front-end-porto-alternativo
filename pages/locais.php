@@ -99,7 +99,7 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         <div class="mt-auto d-grid gap-2">
 
-                            <a href="locais.php?id=<?= $local['id'] ?>"
+                            <a href="locais?id=<?= $local['id'] ?>"
                                 class="btn btn-dark border-warning">
                                 Ver Local
                             </a>
@@ -107,7 +107,7 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <?php if (isLoggedIn()): ?>
                                 <div class="d-flex gap-2 mt-3">
 
-                                    <a href="<?= BASE_URL ?>/pages/locais-crud/editar.php?id=<?= $local['id'] ?>"
+                                    <a href="<?= BASE_URL ?>/pages/locais-crud/editar?id=<?= $local['id'] ?>"
                                         class="btn btn-outline-warning btn-sm">
                                         Editar
                                     </a>
@@ -152,7 +152,7 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?= htmlspecialchars($localSelecionado['nome']) ?>
                     </h5>
 
-                    <a href="locais.php" class="btn-close btn-close-white"></a>
+                    <a href="locais" class="btn-close btn-close-white"></a>
                 </div>
 
                 <div class="modal-body row">
@@ -228,7 +228,7 @@ $locais = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <script>
     function setDeleteId(id) {
         document.getElementById('confirmDeleteBtn').href =
-            'locais-crud/eliminar.php?id=' + id;
+            'locais-crud/eliminar?id=' + id;
     }
 </script>
 
